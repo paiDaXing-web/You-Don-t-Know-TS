@@ -2,7 +2,7 @@
   <img src='./screenshots/logo.svg' width='400'/>
 </p>
 
-<p align='center' fontSize="30px" fontFamily='Comic Sans MS'>You Don't Know TypeScript</p>
+<p align='center'  ><font face='Comic Sans MS' Size=30>You Don't Know TypeScript</font></p>
 
 <p align='center'>
   <a href='https://discord.gg/UgKBCq9'>
