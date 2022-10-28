@@ -12,3 +12,5 @@
   - [1.3typeof](./docs/1.Type%20Manipulation.md#1.1范型)
 
 - [The New Handbook](https://github.com/microsoft/TypeScript-Website/tree/v2/packages/documentation/copy/en/handbook-v2)
+
+### 欢迎大家 PR 贡献 TS 代码，点个 Star 持续更新中...
