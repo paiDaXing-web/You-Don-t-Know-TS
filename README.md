@@ -1,3 +1,3 @@
 <p align='center'>
-  <img src='./assets/bg.png' width='400'/>
+  <img src='./assets/bg.png' width='100%'/>
 </p>
