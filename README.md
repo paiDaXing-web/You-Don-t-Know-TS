@@ -12,7 +12,7 @@
   - [1.3typeof](./docs/1.Type%20Manipulation.md#13-typeof-操作符)
   - [1.4typeof](./docs/1.Type%20Manipulation.md#14-条件类型)
   - [1.5typeof](./docs/1.Type%20Manipulation.md#15-映射类型-MappedType)
-  - [1.6typeof](./docs/1.Type%20Manipulation.md#1.1范型)
+  - [1.6typeof](./docs/TemplateLiteralType.md)
 
 - [The New Handbook](https://github.com/microsoft/TypeScript-Website/tree/v2/packages/documentation/copy/en/handbook-v2)
 
