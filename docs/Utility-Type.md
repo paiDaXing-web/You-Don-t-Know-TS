@@ -3,7 +3,7 @@
 TypeScript 提供了几种实用程序类型来促进常见的类型转换。这些实用程序在全球范围内可用。
 ![4](../assets/utility.jpeg)
 
-#### 2.1 Partial<Type>
+#### 2.1 Partial &lt;Type&gt;
 
 - ● 作用
   构造一个类型，让所有的类型设置为可选
@@ -23,7 +23,7 @@ type Partial<T> = {
 };
 ```
 
-#### 2.2 Required<Type>
+#### 2.2 Required&lt;Type&gt;
 
 - ● 作用
   构造一个类，将所有属性设为必需，与 paritial 相反
@@ -43,7 +43,7 @@ type Required<T> = {
 };
 ```
 
-#### 2.3 Readonly<Type>
+#### 2.3 Readonly&lt;Type&gt;
 
 - ● 作用
   构造一个类型，将属性设置为可读，这就意味着构造类型的属性不能重新分配。
@@ -63,7 +63,7 @@ type Readonly<T> = {
 };
 ```
 
-#### 2.4 Record<Type>
+#### 2.4 Record&lt;Type&gt;
 
 - ● 作用
   构造一个对象类型，其属性键为 Keys，其属性值为 Type。此实用程序可用于将一种类型的属性映射到另一种类型。
@@ -80,7 +80,7 @@ type Record<K extends keyof any, T> = {
 };
 ```
 
-#### 2.5 Exclude<UnionType, ExcludedMembers>
+#### 2.5 Exclude&lt;UnionType, ExcludedMembers&gt;
 
 - ● 作用
   通过从 UnionType 中排除可分配给 ExcludedMembers 的所有联合成员来构造类型。
@@ -98,7 +98,7 @@ type Record<K extends keyof any, T> = {
 type Exclude<T, U> = T extends U ? never : T;
 ```
 
-#### 2.6 Extrac<Type,Union>
+#### 2.6 Extrac&lt;Type,Union&gt;
 
 - ● 作用
   通过从 Type 中提取所有可分配给 Union 的联合成员来构造一个类型。与 exclude 相反。取交集
@@ -116,7 +116,7 @@ type Exclude<T, U> = T extends U ? never : T;
 type Extract<T, U> = T extends U ? T : never;
 ```
 
-#### 2.7 Pick<Type,Keys>
+#### 2.7 Pick&lt;Type,Keys&gt;
 
 - ● 作用
   通过从 Type 中选择一组属性 Keys（字符串文字或字符串文字的联合）来构造一个类型。
@@ -136,7 +136,7 @@ type Pick<T, K extends keyof T> = {
 };
 ```
 
-#### 2.8 Omit<Type,Keys>
+#### 2.8 Omit&lt;Type,Keys&gt;
 
 - ● 作用
   通过从 Type 中选择所有属性然后删除 Keys（字符串文字或字符串文字的联合）来构造一个类型。与 Pick 相反
@@ -155,7 +155,7 @@ type Pick<T, K extends keyof T> = {
 type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
 ```
 
-#### 2.9 NonNullable<Type>
+#### 2.9 NonNullable&lt;Type&gt;
 
 - ● 作用
   通过从 Type 中排除 null 和 undefined 来构造一个类型。
@@ -170,7 +170,7 @@ type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
 type NonNullable<T> = T extends null | undefined ? never : T;
 ```
 
-#### 2.10 Parameters<Type>
+#### 2.10 Parameters&lt;Type&gt;
 
 - ● 作用
   从函数类型的参数中使用的类型构造元组类型
@@ -189,7 +189,7 @@ type Parameters<T extends (...args: any) => any> = T extends (
   : never;
 ```
 
-#### 2.11 ReturnType<Type>
+#### 2.11 ReturnType&lt;Type&gt;
 
 - ● 作用
   构造一个由函数 Type 的返回类型组成的类型。
