@@ -34,9 +34,9 @@
   - [3.1 装饰者模式介绍](docs/Decorators.md#31-装饰者模式)
   - [3.1 装饰者模式介绍](docs/Decorators.md#32-Typescript-装饰器)
   - [3.1 装饰者模式介绍](docs/Decorators.md#33-装饰器的使用)
-  - [3.1 装饰者模式介绍](docs/Decorators.md)
-  - [3.1 装饰者模式介绍](docs/Decorators.md)
-  - [3.1 装饰者模式介绍](docs/Decorators.md)
-  - [3.1 装饰者模式介绍](docs/Decorators.md)
+  - [3.1 装饰者模式介绍](docs/Decorators.md#34-装饰器工厂)
+  - [3.1 装饰者模式介绍](docs/Decorators.md#35-类装饰器)
+  - [3.1 装饰者模式介绍](docs/Decorators.md#36-方法装饰器)
+  - [3.1 装饰者模式介绍](docs/Decorators.md#37-属性装饰器)
 
 ### 欢迎大家 PR 贡献 TS 代码，点个 Star 持续更新中...
