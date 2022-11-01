@@ -146,9 +146,10 @@ type Extract<T, U> = T extends U ? T : never;
   ![4](../assets/utility-18.jpeg)
 
 - 用法
+
   ![4](../assets/utility-19.gif)
 
-  ![4](../assets/Wapped-20.jpeg)
+  ![4](../assets/utility-20.jpeg)
 
 - 源码
 
