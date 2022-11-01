@@ -8,6 +8,7 @@
 ##### 介绍
 
 在前端开发中，我们通常使用工具提示或弹出框组件来显示一些提示消息或说明性信息。为了满足不同的使用场景，工具提示或弹出框组件将允许用户设置其放置位置。例如，顶部、底部、左侧、右侧等。
+
 ![4](../assets/TLT-1.jpeg)
 
 由于字符串文字类型基本上可以对字符串值进行拼写检查，因此我们使用 TypeScript 的类型别名定义一个 Side 类型。
@@ -20,7 +21,9 @@ let side: Side = "rigth"; // Error
 ```
 
 对于以上 4 个位置，已经可以满足大部分场景。但是，如果要更精确地设置工具提示的放置位置，例如，让工具提示显示在指定元素的左上角区域：
+
 ![4](../assets/TLT-2.jpeg)
+
 那么现有的 Side 类型就不能满足要求了，所以让我们定义一个新的展示位置类型：
 
 ```typescript
@@ -47,8 +50,11 @@ type Placement = Side | AlignedPlacement;
 ```
 
 看完上面的代码，你觉得简单多了？与 JavaScript 中的模板字符串类似，模板文本类型括在反引号中，可以包含 ${T} 形式的占位符。类型变量 T 的实际类型可以是字符串、数字、布尔值或 bigint。
+
 ![4](../assets/TLT.jpeg)
+
 模板文本类型为我们提供了连接字符串文本并将非字符串基元类型的文本转换为其相应的字符串文本类型的能力。以下是一些示例：
+
 ![4](../assets/TLT-3.jpeg)
 
 ```typescript
@@ -62,6 +68,7 @@ type T2 = ToString<"bytefer" | 666 | true | -1234n>;
 ```
 
 如果传入的 EventName 或 Concat 实用程序类型的实际类型是联合类型，结果会是什么？
+
 ![4](../assets/TLT-4.jpeg)
 
 ```typescript
@@ -79,6 +86,7 @@ type T4 = Concat<"top" | "bottom", "left" | "right">;
 
 ![4](../assets/TLT-5.gif)
 ![4](../assets/TLT-6.jpeg)
+
 对于具有多个类型占位符的情况，例如 Concat 实用程序类型。多个占位符中的联合类型解析为交叉积。
 
 ```typescript
@@ -88,6 +96,7 @@ type T4 = Concat<"top" | "bottom", "left" | "right">;
 
 ![4](../assets/TLT-7.gif)
 ![4](../assets/TLT-8.jpeg)
+
 在使用模板文字类型时，我们还可以通过以下方式使用 TypeScript 提供的内置实用程序类型来处理字符串类型，例如 Uppercase、Lowercase, Capitalize, and Uncapitalize。
 
 ```typescript
@@ -138,6 +147,7 @@ type LazyPerson = Getters<Person>;
 
 ![4](../assets/Wapped-15.gif)
 ![4](../assets/Wapped-16.jpeg)
+
 类型中的字符串联合
 当基于类型内的信息定义一个新的字符串时, 模板文字的力量就来了
 例如:
