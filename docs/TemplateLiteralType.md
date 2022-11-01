@@ -239,5 +239,6 @@ type UncomfortableGreeting = Uncapitalize<UppercaseGreeting>;
 [● https://www.jianshu.com/p/a8a6e83ff2c7](https://www.jianshu.com/p/a8a6e83ff2c7)
 [● typescriptlang.org/docs/handbook/2/template-literal-types.html](http://typescriptlang.org/docs/handbook/2/template-literal-types.html)
 
+[1.6 模版文字类型](../docs/TemplateLiteralType.md)
 
 ```
