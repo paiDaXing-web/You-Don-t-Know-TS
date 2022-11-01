@@ -14,6 +14,7 @@
   - [1.5 映射类型 Mapped-Type](./docs/1.Type%20Manipulation.md#15-映射类型-MappedType)
   - [1.6 模版文字类型](./docs/TemplateLiteralType.md)
 
-- [The New Handbook](https://github.com/microsoft/TypeScript-Website/tree/v2/packages/documentation/copy/en/handbook-v2)
+- [2.Utility Type](./docs/Utility-Type.md)
+  - [2.1 Partial<Type>](./docs/Utility-Type.md#21-Partial<Type>)
 
 ### 欢迎大家 PR 贡献 TS 代码，点个 Star 持续更新中...

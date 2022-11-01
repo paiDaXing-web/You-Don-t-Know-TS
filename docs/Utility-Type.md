@@ -231,3 +231,8 @@ type ReturnType<T extends (...args: any) => any> = T extends (
 - ● 作用
   将字符串文字类型的第一个字符转换为小写
   ![4](../assets/u-4.jpeg)
+
+#### 参考文献
+
+[● TypeScript Visualized: 15 Most Used Utility Types](https://javascript.plainenglish.io/15-utility-types-that-every-typescript-developer-should-know-6cf121d4047c)
+[● https://www.typescriptlang.org/docs/handbook/utility-types.html](https://www.typescriptlang.org/docs/handbook/utility-types.html)
