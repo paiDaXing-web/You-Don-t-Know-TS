@@ -24,7 +24,7 @@
   - [2.7 Pick&lt;Type,Keys&gt;](./docs/Utility-Type.md#27-PickTypeKeys)
   - [2.8 Omit&lt;Type,Keys&gt;](./docs/Utility-Type.md#28-OmitTypeKeys)
   - [2.9 NonNullable&lt;Type&gt;](./docs/Utility-Type.md#29-NonNullableType)
-  - [2.10 Parameters&lt;Type&gt;](./docs/Utility-Type.md#10-Parameterstype)
+  - [2.10 Parameters&lt;Type&gt;](./docs/Utility-Type.md#210-Parameterstype)
   - [2.11 ReturnType&lt;Type&gt;](./docs/Utility-Type.md#211-ReturnTypetype)
   - [2.12 Uppercase&lt;StringType&gt;](./docs/Utility-Type.md#212-UppercaseStringType)
   - [2.13 Lowercase&lt;StringType&gt;](./docs/Utility-Type.md#213-LowercaseStringType)
