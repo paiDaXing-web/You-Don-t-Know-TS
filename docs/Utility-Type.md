@@ -80,7 +80,7 @@ type Readonly<T> = {
 - 作用
   构造一个对象类型，其属性键为 Keys，其属性值为 Type。此实用程序可用于将一种类型的属性映射到另一种类型。
 
-  ![4](../assets/utility-0.jpeg)
+  ![4](../assets/utility-0.png)
 
 - 源码
 
