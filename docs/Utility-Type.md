@@ -276,3 +276,4 @@ type ReturnType<T extends (...args: any) => any> = T extends (
 
 [ TypeScript Visualized: 15 Most Used Utility Types](https://javascript.plainenglish.io/15-utility-types-that-every-typescript-developer-should-know-6cf121d4047c)
 [ https://www.typescriptlang.org/docs/handbook/utility-types.html](https://www.typescriptlang.org/docs/handbook/utility-types.html)
+从图中可以看出来，通过一层层的包装，增加了原先对象的功能。
