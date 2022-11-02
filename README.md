@@ -47,9 +47,9 @@
   - [4.4 ?：可选属性](docs/StrangeSymbols.md#44-可选属性)
   - [4.5 & 可选属性](docs/StrangeSymbols.md#45--运算符)
   - [4.6 ｜ 分隔符](docs/StrangeSymbols.md#46--分隔符)
-  - [4.7 \_ 数字分隔符](docs/StrangeSymbols.md)
-  - [4.8 &lt;Type&gt; 语法](docs/StrangeSymbols.md)
-  - [4.9 @XXX 装饰器](docs/StrangeSymbols.md)
-  - [4.10 #XXX 私有字段](docs/StrangeSymbols.md)
+  - [4.7 \_ 数字分隔符](docs/StrangeSymbols.md#47--数字分割符)
+  - [4.8 &lt;Type&gt; 语法](docs/StrangeSymbols.md#48-lttypegt-语法)
+  - [4.9 @XXX 装饰器](docs/StrangeSymbols.md#49-xxx-装饰器)
+  - [4.10 #XXX 私有字段](docs/StrangeSymbols.md#410xxx-私有字段)
 
 ### 欢迎大家 PR 贡献 TS 代码，点个 Star 持续更新中...

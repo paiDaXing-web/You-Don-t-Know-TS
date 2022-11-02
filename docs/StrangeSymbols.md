@@ -965,7 +965,7 @@ class Greeter {
 // at Greeter has been decorated
 ```
 
-### #XXX 私有字段
+### 4.10#XXX 私有字段
 
 在 TypeScript 3.8 版本就开始支持 ECMAScript 私有字段，使用方式如下：
 
