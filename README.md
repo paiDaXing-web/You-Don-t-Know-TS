@@ -40,5 +40,16 @@
   - [3.7 属性装饰器](docs/Decorators.md#37-属性装饰器)
   - [3.8 其他装饰器的写法](docs/Decorators.md#38-其他装饰器的写法)
   - [3.9 装饰器运行时代码分析](docs/Decorators.md#39-装饰器运行时代码分析)
+- [第四章:TS 中奇怪的符号](./docs/StrangeSymbols.md)
+  - [4.1 !非空断言操作符](docs/StrangeSymbols.md)
+  - [4.2 ?. 运算符](docs/StrangeSymbols.md)
+  - [4.3 ?? 空值合并运算符](docs/StrangeSymbols.md)
+  - [4.4 ?：可选属性](docs/StrangeSymbols.md)
+  - [4.5 & 可选属性](docs/StrangeSymbols.md)
+  - [4.6 ｜ 分隔符](docs/StrangeSymbols.md)
+  - [4.7 \_ 数字分隔符](docs/StrangeSymbols.md)
+  - [4.8 <Type> 语法](docs/StrangeSymbols.md)
+  - [4.9 @XXX 装饰器](docs/StrangeSymbols.md)
+  - [4.10 #XXX 私有字段](docs/StrangeSymbols.md)
 
 ### 欢迎大家 PR 贡献 TS 代码，点个 Star 持续更新中...
