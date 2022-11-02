@@ -242,3 +242,104 @@ console.log(customerCity); // 输出：Unknown city
 ### 4.4 可选属性?:
 
 在面向对象语言中，接口是一个很重要的概念，它是对行为的抽象，而具体如何行动需要由类去实现。 **_TypeScript 中的接口是一个非常灵活的概念，除了可用于对类的一部分行为进行抽象以外，也常用于对「对象的形状（Shape）」进行描述。_**
+在 TypeScript 中使用 interface 关键字就可以声明一个接口：
+
+```typescript
+interface Person {
+  name: string;
+  age: number;
+}
+
+let semlinker: Person = {
+  name: "semlinker",
+  age: 33,
+};
+```
+
+在以上代码中，我们声明了 Person 接口，它包含了两个必填的属性 name 和 age。在初始化 Person 类型变量时，如果缺少某个属性，TypeScript 编译器就会提示相应的错误信息，比如：
+
+```typescript
+// Property 'age' is missing in type '{ name: string; }' but required in type 'Person'.(2741)
+let lolo: Person = {
+  // Error
+  name: "lolo",
+};
+```
+
+为了解决上述的问题，我们可以把某个属性声明为可选的：
+
+```typescript
+interface Person {
+  name: string;
+  age?: number;
+}
+
+let lolo: Person = {
+  name: "lolo",
+};
+```
+
+#### 4.4.1 工具 Partial&lt;T&gt;
+
+在实际项目开发过程中，为了提高代码复用率，我们可以利用 TypeScript 内置的工具类型 Partial&lt;T&gt; 来快速把某个接口类型中定义的属性变成可选的：
+
+```typescript
+interface PullDownRefreshConfig {
+  threshold: number;
+  stop: number;
+}
+
+/**
+ * type PullDownRefreshOptions = {
+ *   threshold?: number | undefined;
+ *   stop?: number | undefined;
+ * }
+ */
+type PullDownRefreshOptions = Partial<PullDownRefreshConfig>;
+```
+
+是不是觉得 Partial<T> 很方便，下面让我们来看一下它是如何实现的：
+
+```typescript
+/**
+ * Make all properties in T optional
+ */
+type Partial<T> = {
+  [P in keyof T]?: T[P];
+};
+```
+
+#### 4.4.2 工具 Required&lt;T&gt;
+
+既然可以快速地把某个接口中定义的属性全部声明为可选，那能不能把所有的可选的属性变成必选的呢？答案是可以的，针对这个需求，我们可以使用 Required<T> 工具类型，具体的使用方式如下：
+
+```typescript
+interface PullDownRefreshConfig {
+  threshold: number;
+  stop: number;
+}
+
+type PullDownRefreshOptions = Partial<PullDownRefreshConfig>;
+
+/**
+ * type PullDownRefresh = {
+ *   threshold: number;
+ *   stop: number;
+ * }
+ */
+type PullDownRefresh = Required<Partial<PullDownRefreshConfig>>;
+```
+
+同样，我们来看一下 Required<T> 工具类型是如何实现的：
+
+```typescript
+/**
+ * Make all properties in T required
+ */
+type Required<T> = {
+  [P in keyof T]-?: T[P];
+};
+```
+
+原来在 Required&lt;T&gt;
+工具类型内部，通过 -? 移除了可选属性中的 ?，使得属性从可选变为必选的。
