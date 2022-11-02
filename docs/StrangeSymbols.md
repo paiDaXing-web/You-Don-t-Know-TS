@@ -141,3 +141,104 @@ var result =
 - **可选链的运算行为被局限在属性的访问、调用以及元素的访问 —— 它不会沿伸到后续的表达式中，也就是说可选调用不会阻止 a?.b / someMethod() 表达式中的除法运算或 someMethod 的方法调用。**
 
 ### 4.3 ?? 空值合并运算符
+
+在 TypeScript 3.7 版本中除了引入了前面介绍的可选链 ?. 之外，也引入了一个新的逻辑运算符 —— 空值合并运算符 ??。**当左侧操作数为 null 或 undefined 时，其返回右侧的操作数，否则返回左侧的操作数。**
+
+与逻辑或 || 运算符不同，逻辑或会在左操作数为 falsy 值时返回右侧操作数。也就是说，如果你使用 || 来为某些变量设置默认的值时，你可能会遇到意料之外的行为。比如为 falsy 值（’’、NaN 或 0）时。
+
+这里来看一个具体的例子：
+
+```typescript
+const foo = null ?? "default string";
+console.log(foo); // 输出："default string"
+const baz = 0 ?? 42;
+console.log(baz); // 输出：0
+```
+
+编译之后，生成 ES5 代码：
+
+```typescript
+"use strict";
+var _a, _b;
+var foo = (_a = null) !== null && _a !== void 0 ? _a : "default string";
+console.log(foo); // 输出："default string"
+
+var baz = (_b = 0) !== null && _b !== void 0 ? _b : 42;
+console.log(baz); // 输出：0
+```
+
+通过观察以上代码，我们更加直观的了解到，空值合并运算符是如何解决前面 || 运算符存在的潜在问题。下面我们来介绍空值合并运算符的特性和使用时的一些注意事项。
+
+#### 4.3.1 短路
+
+当空值合并运算符的左表达式不为 null 或 undefined 时，不会对右表达式进行求值。
+
+```typescript
+function A() {
+  console.log("A was called");
+  return undefined;
+}
+function B() {
+  console.log("B was called");
+  return false;
+}
+function C() {
+  console.log("C was called");
+  return "foo";
+}
+
+console.log(A() ?? C());
+console.log(B() ?? C());
+```
+
+上述代码运行后，控制台会输出以下结果：
+
+```typescript
+A was called
+C was called
+foo
+B was called
+false
+```
+
+#### 4.3.2 不可以和&&或｜｜ 操作符共运
+
+若空值合并运算符 ?? 直接与 AND（&&）和 OR（||）操作符组合使用 ?? 是不行的。这种情况下会抛出 SyntaxError。
+
+```typescript
+// '||' and '??' operations cannot be mixed without parentheses.(5076)
+(null || undefined) ?? "foo"; // raises a SyntaxError
+
+// '&&' and '??' operations cannot be mixed without parentheses.(5076)
+(true && undefined) ?? "foo"; // raises a SyntaxError
+```
+
+但当使用括号来显式表明优先级时是可行的，比如：
+
+```typescript
+(null || undefined) ?? "foo"; // 返回 "foo"
+```
+
+#### 4.3.3 与可选链操作符？.关系
+
+空值合并运算符针对 undefined 与 null 这两个值，可选链式操作符 ?. 也是如此。可选链式操作符，对于访问属性可能为 undefined 与 null 的对象时非常有用。
+
+```typescript
+interface Customer {
+  name: string;
+  city?: string;
+}
+
+let customer: Customer = {
+  name: "Semlinker",
+};
+
+let customerCity = customer?.city ?? "Unknown city";
+console.log(customerCity); // 输出：Unknown city
+```
+
+前面我们已经介绍了空值合并运算符的应用场景和使用时的一些注意事项，该运算符不仅可以在 TypeScript 3.7 以上版本中使用。当然你也可以在 JavaScript 的环境中使用它，但你需要借助 Babel，在 Babel 7.8.0 版本也开始支持空值合并运算符。
+
+### 4.4 可选属性?:
+
+在面向对象语言中，接口是一个很重要的概念，它是对行为的抽象，而具体如何行动需要由类去实现。 **_TypeScript 中的接口是一个非常灵活的概念，除了可用于对类的一部分行为进行抽象以外，也常用于对「对象的形状（Shape）」进行描述。_**
