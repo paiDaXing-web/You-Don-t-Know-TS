@@ -204,6 +204,64 @@ class Girl {}
 
 作用在类声明上的装饰器，可以给我们改变类的机会。在执行装饰器函数时，会把类构造函数传递给装饰器函数。
 
+类装饰器在类声明之前被声明（紧靠着类声明）。 类装饰器应用于类构造函数，可以用来监视，修改或替换类定义。 类装饰器不能用在声明文件中( .d.ts)，也不能用在任何外部上下文中（比如 declare 的类）。
+
+类装饰器表达式会在运行时当作函数被调用，类的构造函数作为其唯一的参数。
+
+如果类装饰器返回一个值，它会使用提供的构造函数来替换类的声明。
+
+注意 如果你要返回一个新的构造函数，你必须注意处理好原来的原型链。 在运行时的装饰器调用逻辑中 不会为你做这些。
+
+下面是使用类装饰器(@sealed)的例子，应用在 Greeter 类：
+
+```typescript
+@sealed
+class Greeter {
+  greeting: string;
+  constructor(message: string) {
+    this.greeting = message;
+  }
+  greet() {
+    return "Hello, " + this.greeting;
+  }
+}
+```
+
+我们可以这样定义@sealed 装饰器：
+
+```typescript
+function sealed(constructor: Function) {
+  Object.seal(constructor);
+  Object.seal(constructor.prototype);
+}
+```
+
+当@sealed 被执行的时候，它将密封此类的构造函数和原型。(注：参见 Object.seal)
+
+下面是一个重载构造函数的例子。
+
+```typescript
+function classDecorator<T extends { new (...args: any[]): {} }>(
+  constructor: T
+) {
+  return class extends constructor {
+    newProperty = "new property";
+    hello = "override";
+  };
+}
+
+@classDecorator
+class Greeter {
+  property = "property";
+  hello: string;
+  constructor(m: string) {
+    this.hello = m;
+  }
+}
+
+console.log(new Greeter("world"));
+```
+
 ```typescript
 function classDecorator(value: string) {
   return function (constructor) {
@@ -229,6 +287,51 @@ g.thinFaceFeature(); // '瘦脸功能'
 上面的例子中，拿到传递构造函数后，就可以给构造函数原型上增加新的方法，甚至也可以继承别的类。
 
 #### 3.6 方法装饰器
+
+方法装饰器声明在一个方法的声明之前（紧靠着方法声明）。 它会被应用到方法的 属性描述符上，可以用来监视，修改或者替换方法定义。 方法装饰器不能用在声明文件( .d.ts)，重载或者任何外部上下文（比如 declare 的类）中。
+
+方法装饰器表达式会在运行时当作函数被调用，传入下列 3 个参数：
+
+对于静态成员来说是类的构造函数，对于实例成员是类的原型对象。
+成员的名字。
+成员的属性描述符。
+注意   如果代码输出目标版本小于 ES5，属性描述符将会是 undefined。
+
+如果方法装饰器返回一个值，它会被用作方法的属性描述符。
+
+注意   如果代码输出目标版本小于 ES5 返回值会被忽略。
+
+下面是一个方法装饰器（@enumerable）的例子，应用于 Greeter 类的方法上：
+
+```typescript
+class Greeter {
+  greeting: string;
+  constructor(message: string) {
+    this.greeting = message;
+  }
+
+  @enumerable(false)
+  greet() {
+    return "Hello, " + this.greeting;
+  }
+}
+```
+
+我们可以用下面的函数声明来定义@enumerable 装饰器：
+
+```typescript
+function enumerable(value: boolean) {
+  return function (
+    target: any,
+    propertyKey: string,
+    descriptor: PropertyDescriptor
+  ) {
+    descriptor.enumerable = value;
+  };
+}
+```
+
+这里的@enumerable(false)是一个装饰器工厂。 当装饰器 @enumerable(false)被调用时，它会修改属性描述符的 enumerable 属性。
 
 作用在类的方法上，有静态方法和原型方法。作用在静态方法上，装饰器函数接收的是类构造函数；作用在原型方法上，装饰器函数接收的是原型对象。
 这里拿作用在原型方法上举例。
