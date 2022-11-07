@@ -18,7 +18,7 @@ TypeScript 提供最新的和不断发展的 JavaScript 特性，包括那些来
 |              支持模块、泛型和接口              |            不支持模块，泛型或接口            |
 |       社区的支持仍在增长，而且还不是很大       | 大量的社区支持以及大量文档和解决问题的支持｜ |
 
-### 1.2
+### 1.2 获取 TypeScript
 
 命令行的 TypeScript 编译器可以使用 npm 包管理器来安装。
 
@@ -616,7 +616,7 @@ console.log(b);
 
 虽然在 TS 代码中，我们使用了非空断言，使得 const b: number = a!; 语句可以通过 TypeScript 类型检查器的检查。但在生成的 ES5 代码中，! 非空断言操作符被移除了，所以在浏览器中执行以上代码，在控制台会输出 undefined。
 
-#### 3.2.3 确定赋值断言
+### 3.3 确定赋值断言
 
 在 TypeScript 2.7 版本中引入了确定赋值断言，即允许在实例属性和变量声明后面放置一个 ! 号，从而告诉 TypeScript 该属性会被明确地赋值。为了更好地理解它的作用，我们来看个具体的例子：
 
@@ -733,17 +733,842 @@ function isString(x: any): x is string {
 
 ## 五、联合类型和类型别名
 
+### 5.1 联合类型
+
+联合类型通常和 null 或 undefined 一起使用。
+
+```typescript
+const sayHello = (name:string｜undefined) => {
+  /***/
+};
+```
+
+例如，这里 name 的类型是 string ｜ undefined 意味可以将 string 和 undefined 的值传递给 sayHello 函数：
+
+```typescript
+sayHello("semlinker");
+sayHello(undefined);
+```
+
+通过这个示例，你可以凭直觉知道类型 A 和类型 B 联合后的类型是同时接受 A 和 B 值的类型。此外，对于联合类型来说，你可能会遇到以下的用法：
+
+```typescript
+let num: 1 | 2 = 1;
+type EventNames = "click" | "scroll" | "mousemove";
+```
+
+以上示例中的 1、2 或 'click' 被称为字面量类型，用来约束取值只能是某几个值中的一个。
+
+### 5.2 可辨识联合
+
+TypeScript 可辨识联合（Discriminated Unions）类型，也称为代数数据类型或标签联合类型。它包含 3 个要点：可辨识、联合类型和类型守卫。
+
+这种类型的本质是结合联合类型和字面量类型的一种类型保护方法。如果一个类型是多个类型的联合类型，且多个类型含有一个公共属性，那么就可以利用这个公共属性，来创建不同的类型保护区块。
+
+#### 5.2.1 可辨识
+
+可辨识要求联合类型中的每个元素都含有一个单例类型属性，比如：
+
+```typescript
+enum CarTransmission {
+  Automatic = 200,
+  Manual = 300,
+}
+
+interface Motorcycle {
+  vType: "motorcycle"; // discriminant
+  make: number; // year
+}
+
+interface Car {
+  vType: "car"; // discriminant
+  transmission: CarTransmission;
+}
+
+interface Truck {
+  vType: "truck"; // discriminant
+  capacity: number; // in tons
+}
+```
+
+在上述代码中，我们分别定义了 Motorcycle、 Car 和 Truck 三个接口，在这些接口中都包含一个 vType 属性，该属性被称为可辨识的属性，而其它的属性只跟特性的接口相关。
+
+#### 5.2.2 联合类型
+
+基于前边的三个接口，我们可以创建 Vehicle 联合类型：
+
+```typescript
+type Vehicle = Motorcycle | Car | Truck;
+```
+
+现在我们就可以开始使用 Vehicle 联合类型，对于 Vehicle 类型的变量，它可以表示不同类型的车辆。
+
+#### 5.2.3.类型守卫
+
+下面我们来定义一个 evaluatePrice 方法，该方法用于根据车辆的类型、容量和评估因子来计算价格，具体实现如下：
+
+```typescript
+const EVALUATION_FACTOR = Math.PI;
+
+function evaluatePrice(vehicle: Vehicle) {
+  return vehicle.capacity * EVALUATION_FACTOR;
+}
+
+const myTruck: Truck = { vType: "truck", capacity: 9.5 };
+evaluatePrice(myTruck);
+```
+
+对于以上代码，TypeScript 编译器将会提示以下错误信息：
+
+```typescript
+Property 'capacity' does not exist on type 'Vehicle'.
+Property 'capacity' does not exist on type 'Motorcycle'.
+```
+
+原因是在 Motorcycle 接口中，并不存在 capacity 属性，而对于 Car 接口来说，它也不存在 capacity 属性。那么，现在我们应该如何解决以上问题呢？这时，我们可以使用类型守卫。下面我们来重构一下前面定义的 evaluatePrice 方法，重构后的代码如下：
+
+```typescript
+function evaluatePrice(vehicle: Vehicle) {
+switch(vehicle.vType) {
+case "car":
+return vehicle.transmission _ EVALUATION_FACTOR;
+case "truck":
+return vehicle.capacity _ EVALUATION_FACTOR;
+case "motorcycle":
+return vehicle.make \* EVALUATION_FACTOR;
+}
+}
+```
+
+在以上代码中，我们使用 switch 和 case 运算符来实现类型守卫，从而确保在 evaluatePrice 方法中，我们可以安全地访问 vehicle 对象中的所包含的属性，来正确的计算该车辆类型所对应的价格。
+
+### 5.3 类型别名
+
+类型别名用来给一个类型起个新名字。
+
+```typescript
+type Message = string | string[];
+
+let greet = (message: Message) => {
+  // ...
+};
+```
+
 ## 六、交叉类型
+
+在 TypeScript 中交叉类型是将多个类型合并为一个类型。通过 & 运算符可以将现有的多种类型叠加到一起成为一种类型，它包含了所需的所有类型的特性。
+
+```typescript
+type PartialPointX = { x: number };
+type Point = PartialPointX & { y: number };
+
+let point: Point = {
+  x: 1,
+  y: 1,
+};
+```
+
+在上面代码中我们先定义了 PartialPointX 类型，接着使用 & 运算符创建一个新的 Point 类型，表示一个含有 x 和 y 坐标的点，然后定义了一个 Point 类型的变量并初始化。
+
+### 6.1 同名基础类型属性的合并
+
+那么现在问题来了，假设在合并多个类型的过程中，刚好出现某些类型存在相同的成员，但对应的类型又不一致，比如：
+
+```typescript
+interface X {
+  c: string;
+  d: string;
+}
+
+interface Y {
+  c: number;
+  e: string;
+}
+
+type XY = X & Y;
+type YX = Y & X;
+
+let p: XY;
+let q: YX;
+```
+
+在上面的代码中，接口 X 和接口 Y 都含有一个相同的成员 c，但它们的类型不一致。对于这种情况，此时 XY 类型或 YX 类型中成员 c 的类型是不是可以是 string 或 number 类型呢？比如下面的例子：
+
+```typescript
+p = { c: 6, d: "d", e: "e" };
+```
+
+![1](../assets/4.5.jpeg)
+
+```typescript
+q = { c: "c", d: "d", e: "e" };
+```
+
+![1](../assets/4.5.1.jpeg)
+为什么接口 X 和接口 Y 混入后，成员 c 的类型会变成 never 呢？这是因为混入后成员 c 的类型为 string & number，即成员 c 的类型既可以是 string 类型又可以是 number 类型。很明显这种类型是不存在的，所以混入后成员 c 的类型为 never。
+
+### 6.2 同名非基础类型属性的合并
+
+在上面示例中，刚好接口 X 和接口 Y 中内部成员 c 的类型都是基本数据类型，那么如果是非基本数据类型的话，又会是什么情形。我们来看个具体的例子：
+
+```typescript
+interface D {
+  d: boolean;
+}
+interface E {
+  e: string;
+}
+interface F {
+  f: number;
+}
+
+interface A {
+  x: D;
+}
+interface B {
+  x: E;
+}
+interface C {
+  x: F;
+}
+
+type ABC = A & B & C;
+
+let abc: ABC = {
+  x: {
+    d: true,
+    e: "semlinker",
+    f: 666,
+  },
+};
+
+console.log("abc:", abc);
+```
+
+以上代码成功运行后，控制台会输出以下结果：
+![1](../assets/4.5.2.jpeg)
+由上图可知，在混入多个类型时，若存在相同的成员，且成员类型为非基本数据类型，那么是可以成功合并。
 
 ## 七、typescript 函数
 
+### 7.1 Typescript 函数和 Javascript 函数区别
+
+|   TypeScript   |     JavaScript     |
+| :------------: | :----------------: |
+|    含有类型    |       无类型       |
+|    箭头函数    | 箭头函数（ES2015） |
+|    函数类型    |     无函数类型     |
+| 必填和可选参数 | 所有参数都是可选的 |
+|    默认参数    |      默认参数      |
+|    剩余参数    |      剩余参数      |
+|    函数重载    |     无函数重载     |
+
+### 7.2 尖头函数
+
+#### 7.2.1 常见于法
+
+```typescript
+myBooks.forEach(() => console.log('reading'));
+
+myBooks.forEach(title => console.log(title));
+
+myBooks.forEach((title, idx, arr) =>
+  console.log(idx + '-' + title);
+);
+
+myBooks.forEach((title, idx, arr) => {
+  console.log(idx + '-' + title);
+});
+```
+
+#### 7.2.2 使用示例
+
+```typescript
+// 未使用箭头函数
+function Book() {
+  let self = this;
+  self.publishDate = 2016;
+  setInterval(function () {
+    console.log(self.publishDate);
+  }, 1000);
+}
+
+// 使用箭头函数
+function Book() {
+  this.publishDate = 2016;
+  setInterval(() => {
+    console.log(this.publishDate);
+  }, 1000);
+}
+```
+
+### 7.3 参数类型和返回类型
+
+```typescript
+unction createUserId(name: string, id: number): string {
+  return name + id;
+}
+
+```
+
+### 7.4 函数类型
+
+```typescript
+let IdGenerator: (chars: string, nums: number) => string;
+
+function createUserId(name: string, id: number): string {
+  return name + id;
+}
+
+IdGenerator = createUserId;
+```
+
+### 7.5 可选参数及默认参数
+
+```typescript
+// 可选参数
+function createUserId(name: string, id: number, age?: number): string {
+  return name + id;
+}
+
+// 默认参数
+function createUserId(
+  name: string = "semlinker",
+  id: number,
+  age?: number
+): string {
+  return name + id;
+}
+```
+
+在声明函数时，可以通过 ? 号来定义可选参数，比如 age?: number 这种形式。在实际使用时，需要注意的是可选参数要放在普通参数的后面，不然会导致编译错误。
+
+### 7.6 剩余参数
+
+```typescript
+function push(array, ...items) {
+  items.forEach(function (item) {
+    array.push(item);
+  });
+}
+
+let a = [];
+push(a, 1, 2, 3);
+```
+
+### 7.7 函数重载
+
+函数重载或方法重载是使用相同名称和不同参数数量或类型创建多个方法的一种能力。
+
+```typescript
+function add(a: number, b: number): number;
+function add(a: string, b: string): string;
+function add(a: string, b: number): string;
+function add(a: number, b: string): string;
+function add(a: Combinable, b: Combinable) {
+  // type Combinable = string | number;
+  if (typeof a === "string" || typeof b === "string") {
+    return a.toString() + b.toString();
+  }
+  return a + b;
+}
+```
+
+在以上代码中，我们为 add 函数提供了多个函数类型定义，从而实现函数的重载。在 TypeScript 中除了可以重载普通函数之外，我们还可以重载类中的成员方法。
+
+方法重载是指在同一个类中方法同名，参数不同（参数类型不同、参数个数不同或参数个数相同时参数的先后顺序不同），调用时根据实参的形式，选择与它匹配的方法执行操作的一种技术。所以类中成员方法满足重载的条件是：在同一个类中，方法名相同且参数列表不同。下面我们来举一个成员方法重载的例子：
+
+```typescript
+class Calculator {
+  add(a: number, b: number): number;
+  add(a: string, b: string): string;
+  add(a: string, b: number): string;
+  add(a: number, b: string): string;
+  add(a: Combinable, b: Combinable) {
+    if (typeof a === "string" || typeof b === "string") {
+      return a.toString() + b.toString();
+    }
+    return a + b;
+  }
+}
+
+const calculator = new Calculator();
+const result = calculator.add("Semlinker", " Kakuqo");
+```
+
+这里需要注意的是，当 TypeScript 编译器处理函数重载时，它会查找重载列表，尝试使用第一个重载定义。 如果匹配的话就使用这个。 因此，在定义重载的时候，一定要把最精确的定义放在最前面。另外在 Calculator 类中，add(a: Combinable, b: Combinable){ } 并不是重载列表的一部分，因此对于 add 成员方法来说，我们只定义了四个重载方法。
+
 ## 八、typescript 数组
+
+### 8.1 数组解构
+
+```typescript
+let x: number;
+let y: number;
+let z: number;
+let five_array = [0, 1, 2, 3, 4];
+[x, y, z] = five_array;
+```
+
+### 8.2 数组展开运算符
+
+```typescript
+let two_array = [0, 1];
+let five_array = [...two_array, 2, 3, 4];
+```
+
+### 8.3 数组遍历
+
+```typescript
+let colors: string[] = ["red", "green", "blue"];
+for (let i of colors) {
+  console.log(i);
+}
+```
 
 ## 九、typescript 对象
 
+### 9.1 对象解构
+
+```typescript
+let person = {
+  name: "Semlinker",
+  gender: "Male",
+};
+
+let { name, gender } = person;
+```
+
+### 9.2 对象展开运算符
+
+```typescript
+let person = {
+  name: "Semlinker",
+  gender: "Male",
+  address: "Xiamen",
+};
+
+// 组装对象
+let personWithAge = { ...person, age: 33 };
+
+// 获取除了某些项外的其它项
+let { name, ...rest } = person;
+```
+
 ## 十、typescript 接口
 
+在面向对象语言中，接口是一个很重要的概念，它是对行为的抽象，而具体如何行动需要由类去实现。
+
+TypeScript 中的接口是一个非常灵活的概念，除了可用于对类的一部分行为进行抽象以外，也常用于对「对象的形状（Shape）」进行描述。
+
+### 10.1 对象的形状
+
+```typescript
+interface Person {
+  name: string;
+  age: number;
+}
+
+let semlinker: Person = {
+  name: "semlinker",
+  age: 33,
+};
+```
+
+### 10.2 可选 | 只读属性
+
+```typescript
+interface Person {
+  readonly name: string;
+  age?: number;
+}
+```
+
+只读属性用于限制只能在对象刚刚创建的时候修改其值。此外 TypeScript 还提供了 ReadonlyArray&lt;T&gt; 类型，它与 Array&lt;T&gt; 相似，只是把所有可变方法去掉了，因此可以确保数组创建后再也不能被修改。
+
+```typescript
+let a: number[] = [1, 2, 3, 4];
+let ro: ReadonlyArray<number> = a;
+ro[0] = 12; // error!
+ro.push(5); // error!
+ro.length = 100; // error!
+a = ro; // error!
+```
+
+### 10.3 任意属性
+
+有时候我们希望一个接口中除了包含必选和可选属性之外，还允许有其他的任意属性，这时我们可以使用 索引签名 的形式来满足上述要求。
+
+```typescript
+interface Person {
+  name: string;
+  age?: number;
+  [propName: string]: any;
+}
+
+const p1 = { name: "semlinker" };
+const p2 = { name: "lolo", age: 5 };
+const p3 = { name: "kakuqo", sex: 1 };
+```
+
+### 10.4 接口与类型别名的区别
+
+#### 10.4.1.Objects/Functions
+
+接口和类型别名都可以用来描述对象的形状或函数签名：
+
+接口
+
+```typescript
+interface Point {
+  x: number;
+  y: number;
+}
+
+interface SetPoint {
+  (x: number, y: number): void;
+}
+类型别名;
+
+type Point = {
+  x: number;
+  y: number;
+};
+
+type SetPoint = (x: number, y: number) => void;
+```
+
+#### 10.4.2.Other Types
+
+与接口类型不一样，类型别名可以用于一些其他类型，比如原始类型、联合类型和元组：
+
+```typescript
+// primitive
+type Name = string;
+
+// object
+type PartialPointX = { x: number };
+type PartialPointY = { y: number };
+
+// union
+type PartialPoint = PartialPointX | PartialPointY;
+
+// tuple
+type Data = [number, string];
+```
+
+#### 10.4.3.Extend
+
+接口和类型别名都能够被扩展，但语法有所不同。此外，接口和类型别名不是互斥的。接口可以扩展类型别名，而反过来是不行的。
+
+**Interface extends interface**
+
+```typescript
+interface PartialPointX {
+  x: number;
+}
+interface Point extends PartialPointX {
+  y: number;
+}
+type Point = PartialPointX & { y: number };
+```
+
+**Type alias extends type alias**
+
+```typescript
+type PartialPointX = { x: number };
+type Point = PartialPointX & { y: number };
+type Point = PartialPointX & { y: number };
+```
+
+**Interface extends type alias**
+
+```typescript
+type PartialPointX = { x: number };
+interface Point extends PartialPointX {
+  y: number;
+}
+type Point = PartialPointX & { y: number };
+```
+
+**Type alias extends interface**
+
+```typescript
+interface PartialPointX {
+  x: number;
+}
+type Point = PartialPointX & { y: number };
+```
+
+#### 10.4.4.Implements
+
+类可以以相同的方式实现接口或类型别名，但类不能实现使用类型别名定义的联合类型：
+
+```typescript
+interface Point {
+  x: number;
+  y: number;
+}
+
+class SomePoint implements Point {
+  x = 1;
+  y = 2;
+}
+
+type Point2 = {
+  x: number;
+  y: number;
+};
+
+class SomePoint2 implements Point2 {
+  x = 1;
+  y = 2;
+}
+
+type PartialPoint = { x: number } | { y: number };
+
+// A class can only implement an object type or
+// intersection of object types with statically known members.
+class SomePartialPoint implements PartialPoint {
+  // Error
+  x = 1;
+  y = 2;
+}
+```
+
+#### 10.4.5.Declaration merging
+
+与类型别名不同，接口可以定义多次，会被自动合并为单个接口。
+
+```typescript
+interface Point {
+  x: number;
+}
+interface Point {
+  y: number;
+}
+
+const point: Point = { x: 1, y: 2 };
+```
+
 ## 十一、typescript 类
+
+### 11.1 类的属性与方法
+
+在面向对象语言中，类是一种面向对象计算机编程语言的构造，是创建对象的蓝图，描述了所创建的对象共同的属性和方法。
+
+在 TypeScript 中，我们可以通过 Class 关键字来定义一个类：
+
+```typescript
+class Greeter {
+  // 静态属性
+  static cname: string = "Greeter";
+  // 成员属性
+  greeting: string;
+
+  // 构造函数 - 执行初始化操作
+  constructor(message: string) {
+    this.greeting = message;
+  }
+
+  // 静态方法
+  static getClassName() {
+    return "Class name is Greeter";
+  }
+
+  // 成员方法
+  greet() {
+    return "Hello, " + this.greeting;
+  }
+}
+
+let greeter = new Greeter("world");
+```
+
+那么成员属性与静态属性，成员方法与静态方法有什么区别呢？这里无需过多解释，我们直接看一下编译生成的 ES5 代码：
+
+```typescript
+"use strict";
+var Greeter = /** @class */ (function () {
+  // 构造函数 - 执行初始化操作
+  function Greeter(message) {
+    this.greeting = message;
+  }
+  // 静态方法
+  Greeter.getClassName = function () {
+    return "Class name is Greeter";
+  };
+  // 成员方法
+  Greeter.prototype.greet = function () {
+    return "Hello, " + this.greeting;
+  };
+  // 静态属性
+  Greeter.cname = "Greeter";
+  return Greeter;
+})();
+var greeter = new Greeter("world");
+```
+
+### 11.2 ECMAScript 私有字段
+
+在 TypeScript 3.8 版本就开始支持 ECMAScript 私有字段，使用方式如下：
+
+```typescript
+class Person {
+  #name: string;
+
+  constructor(name: string) {
+    this.#name = name;
+  }
+
+  greet() {
+    console.log(`Hello, my name is ${this.#name}!`);
+  }
+}
+
+let semlinker = new Person("Semlinker");
+
+semlinker.#name;
+//     ~~~~~
+// Property '#name' is not accessible outside class 'Person'
+// because it has a private identifier.
+```
+
+与常规属性（甚至使用 private 修饰符声明的属性）不同，私有字段要牢记以下规则：
+
+- > 私有字段以 # 字符开头，有时我们称之为私有名称；
+- > 每个私有字段名称都唯一地限定于其包含的类；
+- > 不能在私有字段上使用 TypeScript 可访问性修饰符（如 public 或 private）；
+- > 私有字段不能在包含的类之外访问，甚至不能被检测到。
+
+### 11.3 访问器
+
+在 TypeScript 中，我们可以通过 getter 和 setter 方法来实现数据的封装和有效性校验，防止出现异常数据。
+
+```typescript
+let passcode = "Hello TypeScript";
+
+class Employee {
+  private _fullName: string;
+
+  get fullName(): string {
+    return this._fullName;
+  }
+
+  set fullName(newName: string) {
+    if (passcode && passcode == "Hello TypeScript") {
+      this._fullName = newName;
+    } else {
+      console.log("Error: Unauthorized update of employee!");
+    }
+  }
+}
+
+let employee = new Employee();
+employee.fullName = "Semlinker";
+if (employee.fullName) {
+  console.log(employee.fullName);
+}
+```
+
+### 11.4 类的继承
+
+继承（Inheritance）是一种联结类与类的层次模型。指的是一个类（称为子类、子接口）继承另外的一个类（称为父类、父接口）的功能，并可以增加它自己的新功能的能力，继承是类与类或者接口与接口之间最常见的关系。
+
+继承是一种 is-a 关系：
+
+![1](../assets/0.4.jpeg)
+
+在 TypeScript 中，我们可以通过 extends 关键字来实现继承：
+
+```typescript
+class Animal {
+  name: string;
+
+  constructor(theName: string) {
+    this.name = theName;
+  }
+
+  move(distanceInMeters: number = 0) {
+    console.log(`${this.name} moved ${distanceInMeters}m.`);
+  }
+}
+
+class Snake extends Animal {
+  constructor(name: string) {
+    super(name); // 调用父类的构造函数
+  }
+
+  move(distanceInMeters = 5) {
+    console.log("Slithering...");
+    super.move(distanceInMeters);
+  }
+}
+
+let sam = new Snake("Sammy the Python");
+sam.move();
+```
+
+### 11.5 抽象类
+
+使用 abstract 关键字声明的类，我们称之为抽象类。抽象类不能被实例化，因为它里面包含一个或多个抽象方法。所谓的抽象方法，是指不包含具体实现的方法：
+
+```typescript
+abstract class Person {
+  constructor(public name: string) {}
+
+  abstract say(words: string): void;
+}
+
+// Cannot create an instance of an abstract class.(2511)
+const lolo = new Person(); // Error
+```
+
+抽象类不能被直接实例化，我们只能实例化实现了所有抽象方法的子类。具体如下所示：
+
+```typescript
+abstract class Person {
+  constructor(public name: string) {}
+
+  // 抽象方法
+  abstract say(words: string): void;
+}
+
+class Developer extends Person {
+  constructor(name: string) {
+    super(name);
+  }
+
+  say(words: string): void {
+    console.log(`${this.name} says ${words}`);
+  }
+}
+
+const lolo = new Developer("lolo");
+lolo.say("I love ts!"); // lolo says I love ts!
+```
+
+### 11.6 类方法重载
+
+在前面的章节，我们已经介绍了函数重载。对于类的方法来说，它也支持重载。比如，在以下示例中我们重载了 ProductService 类的 getProducts 成员方法：
+
+```typescript
+class ProductService {
+  getProducts(): void;
+  getProducts(id: number): void;
+  getProducts(id?: number) {
+    if (typeof id === "number") {
+      console.log(`获取id为 ${id} 的产品信息`);
+    } else {
+      console.log(`获取所有的产品信息`);
+    }
+  }
+}
+
+const productService = new ProductService();
+productService.getProducts(666); // 获取 id 为 666 的产品信息
+productService.getProducts(); // 获取所有的产品信息
+```
 
 ## 十二、typescript 泛型
 
@@ -756,3 +1581,7 @@ function isString(x: any): x is string {
 ## 十六、typescript 开发辅助函数
 
 ## 十七、参考工具
+
+```
+
+```
