@@ -1627,7 +1627,7 @@ interface GenericIdentityFn<T> {
 }
 ```
 
-12.3 泛型类
+### 12.3 泛型类
 
 ```typescript
 class GenericNumber<T> {
@@ -1798,14 +1798,511 @@ description?: string | undefined;
 
 ## 十三、装饰器
 
+### 13.1 装饰器是什么
+
+- 它是一个表达式
+- 该表达式被执行后，返回一个函数
+- 函数的入参分别为 target、name 和 descriptor
+- 执行该函数后，可能返回 descriptor 对象，用于配置 target 对象
+
+### 13.2 装饰器的分类
+
+- 类装饰器（Class decorators）
+- 属性装饰器（Property decorators）
+- 方法装饰器（Method decorators）
+- 参数装饰器（Parameter decorators）
+- 需要注意的是，若要启用实验性的装饰器特性，你必须在命令行或 tsconfig.json 里启用 experimentalDecorators 编译器选项：
+
+命令行：
+
+```typescript
+tsc --target ES5 --experimentalDecorators
+```
+
+tsconfig.json：
+
+```typescript
+{
+  "compilerOptions": {
+     "target": "ES5",
+     "experimentalDecorators": true
+   }
+}
+```
+
+### 13.3 类装饰器
+
+类装饰器声明：
+
+```typescript
+declare type ClassDecorator = <TFunction extends Function>(
+  target: TFunction
+) => TFunction | void;
+```
+
+类装饰器顾名思义，就是用来装饰类的。它接收一个参数：
+
+- target: TFunction - 被装饰的类
+  看完第一眼后，是不是感觉都不好了。没事，我们马上来个例子：
+
+```typescript
+function Greeter(target: Function): void {
+  target.prototype.greet = function (): void {
+    console.log("Hello Semlinker!");
+  };
+}
+
+@Greeter
+class Greeting {
+  constructor() {
+    // 内部实现
+  }
+}
+
+let myGreeting = new Greeting();
+myGreeting.greet(); // console output: 'Hello Semlinker!';
+```
+
+上面的例子中，我们定义了 Greeter 类装饰器，同时我们使用了 @Greeter 语法糖，来使用装饰器。
+
+友情提示：读者可以直接复制上面的代码，在 TypeScript Playground 中运行查看结果。
+
+有的读者可能想问，例子中总是输出 Hello Semlinker! ，能自定义输出的问候语么 ？这个问题很好，答案是可以的。
+
+具体实现如下：
+
+```typescript
+function Greeter(greeting: string) {
+  return function (target: Function) {
+    target.prototype.greet = function (): void {
+      console.log(greeting);
+    };
+  };
+}
+
+@Greeter("Hello TS!")
+class Greeting {
+  constructor() {
+    // 内部实现
+  }
+}
+
+let myGreeting = new Greeting();
+myGreeting.greet(); // console output: 'Hello TS!';
+```
+
+### 13.4 属性装饰器
+
+属性装饰器声明：
+
+```typescript
+declare type PropertyDecorator = (
+  target: Object,
+  propertyKey: string | symbol
+) => void;
+```
+
+属性装饰器顾名思义，用来装饰类的属性。它接收两个参数：
+
+- target: Object - 被装饰的类
+- propertyKey: string | symbol - 被装饰类的属性名
+  趁热打铁，马上来个例子热热身：
+
+```typescript
+function logProperty(target: any, key: string) {
+  delete target[key];
+
+  const backingField = "_" + key;
+
+  Object.defineProperty(target, backingField, {
+    writable: true,
+    enumerable: true,
+    configurable: true,
+  });
+
+  // property getter
+  const getter = function (this: any) {
+    const currVal = this[backingField];
+    console.log(`Get: ${key} => ${currVal}`);
+    return currVal;
+  };
+
+  // property setter
+  const setter = function (this: any, newVal: any) {
+    console.log(`Set: ${key} => ${newVal}`);
+    this[backingField] = newVal;
+  };
+
+  // Create new property with getter and setter
+  Object.defineProperty(target, key, {
+    get: getter,
+    set: setter,
+    enumerable: true,
+    configurable: true,
+  });
+}
+
+class Person {
+  @logProperty
+  public name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+const p1 = new Person("semlinker");
+p1.name = "kakuqo";
+```
+
+以上代码我们定义了一个 logProperty 函数，来跟踪用户对属性的操作，当代码成功运行后，在控制台会输出以下结果：
+
+```typescript
+Set: (name) => semlinker;
+Set: (name) => kakuqo;
+```
+
+### 13.5 方法装饰器
+
+方法装饰器声明：
+
+```typescript
+declare type MethodDecorator = <T>(
+  target: Object,
+  propertyKey: string | symbol,
+  descriptor: TypePropertyDescript<T>
+) => TypedPropertyDescriptor<T> | void;
+```
+
+方法装饰器顾名思义，用来装饰类的方法。它接收三个参数：
+
+- target: Object - 被装饰的类
+- propertyKey: string | symbol - 方法名
+- descriptor: TypePropertyDescript - 属性描述符
+  废话不多说，直接上例子：
+
+```typescript
+function LogOutput(tarage: Function, key: string, descriptor: any) {
+  let originalMethod = descriptor.value;
+  let newMethod = function (...args: any[]): any {
+    let result: any = originalMethod.apply(this, args);
+    if (!this.loggedOutput) {
+      this.loggedOutput = new Array<any>();
+    }
+    this.loggedOutput.push({
+      method: key,
+      parameters: args,
+      output: result,
+      timestamp: new Date(),
+    });
+    return result;
+  };
+  descriptor.value = newMethod;
+}
+
+class Calculator {
+  @LogOutput
+  double(num: number): number {
+    return num * 2;
+  }
+}
+
+let calc = new Calculator();
+calc.double(11);
+// console ouput: [{method: "double", output: 22, ...}]
+console.log(calc.loggedOutput);
+```
+
+下面我们来介绍一下参数装饰器。
+
+### 13.6 参数装饰器
+
+参数装饰器声明：
+
+```typescript
+declare type ParameterDecorator = (
+  target: Object,
+  propertyKey: string | symbol,
+  parameterIndex: number
+) => void;
+```
+
+参数装饰器顾名思义，是用来装饰函数参数，它接收三个参数：
+
+- target: Object - 被装饰的类
+- propertyKey: string | symbol - 方法名
+- parameterIndex: number - 方法中参数的索引值
+
+```typescript
+function Log(target: Function, key: string, parameterIndex: number) {
+  let functionLogged = key || target.prototype.constructor.name;
+  console.log(`The parameter in position ${parameterIndex} at ${functionLogged} has
+	been decorated`);
+}
+
+class Greeter {
+  greeting: string;
+  constructor(@Log phrase: string) {
+    this.greeting = phrase;
+  }
+}
+
+// console output: The parameter in position 0
+// at Greeter has been decorated
+```
+
 ## 十四、typescript4.0 特性
+
+TypeScript 4.0 带来了很多新的特性，这里我们只简单介绍其中的两个新特性。
+
+### 14.1 构造函数的类属性推断
+
+当 noImplicitAny 配置属性被启用之后，TypeScript 4.0 就可以使用控制流分析来确认类中的属性类型：
+
+```typescript
+class Person {
+  fullName; // (property) Person.fullName: string
+  firstName; // (property) Person.firstName: string
+  lastName; // (property) Person.lastName: string
+
+  constructor(fullName: string) {
+    this.fullName = fullName;
+    this.firstName = fullName.split(" ")[0];
+    this.lastName = fullName.split(" ")[1];
+  }
+}
+```
+
+然而对于以上的代码，如果在 TypeScript 4.0 以前的版本，比如在 3.9.2 版本下，编译器会提示以下错误信息：
+
+```typescript
+class Person {
+  // Member 'fullName' implicitly has an 'any' type.(7008)
+  fullName; // Error
+  firstName; // Error
+  lastName; // Error
+
+  constructor(fullName: string) {
+    this.fullName = fullName;
+    this.firstName = fullName.split(" ")[0];
+    this.lastName = fullName.split(" ")[1];
+  }
+}
+```
+
+从构造函数推断类属性的类型，该特性给我们带来了便利。但在使用过程中，如果我们没法保证对成员属性都进行赋值，那么该属性可能会被认为是 undefined。
+
+```typescript
+class Person {
+  fullName; // (property) Person.fullName: string
+  firstName; // (property) Person.firstName: string | undefined
+  lastName; // (property) Person.lastName: string | undefined
+
+  constructor(fullName: string) {
+    this.fullName = fullName;
+    if (Math.random()) {
+      this.firstName = fullName.split(" ")[0];
+      this.lastName = fullName.split(" ")[1];
+    }
+  }
+}
+```
+
+### 14.2 标记的元组元素
+
+在以下的示例中，我们使用元组类型来声明剩余参数的类型：
+
+```typescript
+function addPerson(...args: [string, number]): void {
+  console.log(`Person info: name: ${args[0]}, age: ${args[1]}`);
+}
+
+addPerson("lolo", 5); // Person info: name: lolo, age: 5
+```
+
+其实，对于上面的 addPerson 函数，我们也可以这样实现：
+
+```typescript
+function addPerson(name: string, age: number) {
+  console.log(`Person info: name: ${name}, age: ${age}`);
+}
+```
+
+这两种方式看起来没有多大的区别，但对于第一种方式，我们没法设置第一个参数和第二个参数的名称。虽然这样对类型检查没有影响，但在元组位置上缺少标签，会使得它们难于使用。为了提高开发者使用元组的体验，TypeScript 4.0 支持为元组类型设置标签：
+
+```typescript
+function addPerson(...args: [name: string, age: number]): void {
+  console.log(`Person info: name: ${args[0]}, age: ${args[1]}`);
+}
+```
+
+之后，当我们使用 addPerson 方法时，TypeScript 的智能提示就会变得更加友好。
+
+```typescript
+// 未使用标签的智能提示
+// addPerson(args_0: string, args_1: number): void
+function addPerson(...args: [string, number]): void {
+  console.log(`Person info: name: ${args[0]}, age: ${args[1]}`);
+}
+
+// 已使用标签的智能提示
+// addPerson(name: string, age: number): void
+function addPerson(...args: [name: string, age: number]): void {
+  console.log(`Person info: name: ${args[0]}, age: ${args[1]}`);
+}
+```
 
 ## 十五、编译上下文
 
+### 15.1 tsconfig.json 的作用
+
+- 用于标识 TypeScript 项目的根路径；
+- 用于配置 TypeScript 编译器；
+- 用于指定编译的文件。
+
+### 15.2 tsconfig.json 重要字段
+
+- files - 设置要编译的文件的名称；
+- include - 设置需要进行编译的文件，支持路径模式匹配；
+- exclude - 设置无需进行编译的文件，支持路径模式匹配；
+- compilerOptions - 设置与编译流程相关的选项。
+
+### 15.3 compilerOptions 选项
+
+compilerOptions 支持很多选项，常见的有 baseUrl、 target、baseUrl、 moduleResolution 和 lib 等。
+
+compilerOptions 每个选项的详细说明如下：
+
+```typescript
+
+
+{
+  "compilerOptions": {
+
+    /* 基本选项 */
+    "target": "es5",                       // 指定 ECMAScript 目标版本: 'ES3' (default), 'ES5', 'ES6'/'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'
+    "module": "commonjs",                  // 指定使用模块: 'commonjs', 'amd', 'system', 'umd' or 'es2015'
+    "lib": [],                             // 指定要包含在编译中的库文件
+    "allowJs": true,                       // 允许编译 javascript 文件
+    "checkJs": true,                       // 报告 javascript 文件中的错误
+    "jsx": "preserve",                     // 指定 jsx 代码的生成: 'preserve', 'react-native', or 'react'
+    "declaration": true,                   // 生成相应的 '.d.ts' 文件
+    "sourceMap": true,                     // 生成相应的 '.map' 文件
+    "outFile": "./",                       // 将输出文件合并为一个文件
+    "outDir": "./",                        // 指定输出目录
+    "rootDir": "./",                       // 用来控制输出目录结构 --outDir.
+    "removeComments": true,                // 删除编译后的所有的注释
+    "noEmit": true,                        // 不生成输出文件
+    "importHelpers": true,                 // 从 tslib 导入辅助工具函数
+    "isolatedModules": true,               // 将每个文件做为单独的模块 （与 'ts.transpileModule' 类似）.
+
+    /* 严格的类型检查选项 */
+    "strict": true,                        // 启用所有严格类型检查选项
+    "noImplicitAny": true,                 // 在表达式和声明上有隐含的 any类型时报错
+    "strictNullChecks": true,              // 启用严格的 null 检查
+    "noImplicitThis": true,                // 当 this 表达式值为 any 类型的时候，生成一个错误
+    "alwaysStrict": true,                  // 以严格模式检查每个模块，并在每个文件里加入 'use strict'
+
+    /* 额外的检查 */
+    "noUnusedLocals": true,                // 有未使用的变量时，抛出错误
+    "noUnusedParameters": true,            // 有未使用的参数时，抛出错误
+    "noImplicitReturns": true,             // 并不是所有函数里的代码都有返回值时，抛出错误
+    "noFallthroughCasesInSwitch": true,    // 报告 switch 语句的 fallthrough 错误。（即，不允许 switch 的 case 语句贯穿）
+
+    /* 模块解析选项 */
+    "moduleResolution": "node",            // 选择模块解析策略： 'node' (Node.js) or 'classic' (TypeScript pre-1.6)
+    "baseUrl": "./",                       // 用于解析非相对模块名称的基目录
+    "paths": {},                           // 模块名到基于 baseUrl 的路径映射的列表
+    "rootDirs": [],                        // 根文件夹列表，其组合内容表示项目运行时的结构内容
+    "typeRoots": [],                       // 包含类型声明的文件列表
+    "types": [],                           // 需要包含的类型声明文件名列表
+    "allowSyntheticDefaultImports": true,  // 允许从没有设置默认导出的模块中默认导入。
+
+    /* Source Map Options */
+    "sourceRoot": "./",                    // 指定调试器应该找到 TypeScript 文件而不是源文件的位置
+    "mapRoot": "./",                       // 指定调试器应该找到映射文件而不是生成文件的位置
+    "inlineSourceMap": true,               // 生成单个 soucemaps 文件，而不是将 sourcemaps 生成不同的文件
+    "inlineSources": true,                 // 将代码与 sourcemaps 生成到一个文件中，要求同时设置了 --inlineSourceMap 或 --sourceMap 属性
+
+    /* 其他选项 */
+    "experimentalDecorators": true,        // 启用装饰器
+    "emitDecoratorMetadata": true          // 为装饰器提供元数据的支持
+  }
+}
+```
+
 ## 十六、typescript 开发辅助函数
+
+### 16.1 TypeScript Playground
+
+简介：TypeScript 官方提供的在线 TypeScript 运行环境，利用它你可以方便地学习 TypeScript 相关知识与不同版本的功能特性。
+
+[在线地址](https://www.typescriptlang.org/play/)
+
+![1](../assets/0.5.jpeg)
+
+除了 TypeScript 官方的 Playground 之外，你还可以选择其他的 Playground，比如 codepen.io、stackblitz 或 jsbin.com 等。
+
+### 16.2 TypeScript UML Playground
+
+简介：一款在线 TypeScript UML 工具，利用它你可以为指定的 TypeScript 代码生成 UML 类图。
+
+[在线地址](https://tsuml-demo.firebaseapp.com/)
+
+![1](../assets/0.6.jpeg)
+
+### 16.3 JSON TO TS
+
+简介：一款 TypeScript 在线工具，利用它你可以为指定的 JSON 数据生成对应的 TypeScript 接口定义。
+
+[在线地址](http://www.jsontots.com/)
+
+![1](../assets/0.7.jpeg)
+
+除了使用 jsontots 在线工具之外，对于使用 VSCode IDE 的小伙们还可以安装 JSON to TS 扩展来快速完成 JSON to TS 的转换工作。
+
+### 16.4 Schemats
+
+简介：利用 Schemats，你可以基于（Postgres，MySQL）SQL 数据库中的 schema 自动生成 TypeScript 接口定义。
+
+[在线地址](https://github.com/SweetIQ/schemats)
+
+![1](../assets/0.8.jpeg)
+
+### 16.5 TypeScript AST Viewer
+
+简介：一款 TypeScript AST 在线工具，利用它你可以查看指定 TypeScript 代码对应的 AST（Abstract Syntax Tree）抽象语法树。
+
+[在线地址](https://ts-ast-viewer.com/)
+
+![1](../assets/0.9.jpeg)
+
+对于了解过 AST 的小伙伴来说，对 astexplorer 这款在线工具应该不会陌生。该工具除了支持 JavaScript 之外，还支持 CSS、JSON、RegExp、GraphQL 和 Markdown 等格式的解析。
+
+### 16.6 TypeDoc
+
+简介：TypeDoc 用于将 TypeScript 源代码中的注释转换为 HTML 文档或 JSON 模型。它可灵活扩展，并支持多种配置。
+
+[在线地址](https://typedoc.org/)
+
+![1](../assets/0.10.jpeg)
+
+### 16.7 TypeScript ESLint
+
+简介：使用 TypeScript ESLint 可以帮助我们规范代码质量，提高团队开发效率。
+
+[在线地址](https://typescript-eslint.io/)
+
+![1](../assets/0.11.jpeg)
+
+对 TypeScript ESLint 项目感兴趣且想在项目中应用的小伙伴，可以参考 “在 Typescript 项目中，如何优雅的使用 ESLint 和 Prettier” 这篇文章。
+
+能坚持看到这里的小伙伴都是 “真爱”，如果你还意犹未尽，那就来看看本人整理的 Github 上 1.8K+ 的开源项目：awesome-typescript。
+https://github.com/semlinker/awesome-typescript
 
 ## 十七、参考工具
 
-```
-
-```
+- [mariusschulz - the-unknown-type-in-typescript](https://mariusschulz.com/blog/the-unknown-type-in-typescript)
+- [深入理解 TypeScript - 编译上下文](https://jkchao.github.io/typescript-book-chinese/project/compilationContext.html#tsconfig-json)
+- [TypeScript 4.0](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-0.html)
+- [TypeScript Quickly](https://www.manning.com/books/typescript-quickly)
