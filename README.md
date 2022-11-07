@@ -5,6 +5,24 @@
 
 ### 目录
 
+- [基础回顾：typescript 入门教程](docs/tutorial.md)
+  - [一、typescript 是什么?](docs/tutorial.md#一typescript-是什么)
+  - [二、typescript 基础类型](docs/tutorial.md#二typescript-基础类型)
+  - [三、typescript 断言](docs/tutorial.md#三typescript-断言)
+  - [四、类型守卫](docs/tutorial.md#四类型守卫)
+  - [五、联合类型和类型别名](docs/tutorial.md#五联合类型和类型别名)
+  - [六、交叉类型](docs/tutorial.md#六交叉类型)
+  - [七、typescript 函数](docs/tutorial.md#七typescript-函数)
+  - [八、typescript 数组](docs/tutorial.md#八typescript-数组)
+  - [九、typescript 对象](docs/tutorial.md#九typescript-对象)
+  - [十、typescript 接口](docs/tutorial.md#十typescript-接口)
+  - [十一、typescript 类](docs/tutorial.md#十一typescript-类)
+  - [十二、typescript 泛型](docs/tutorial.md#十二typescript-泛型)
+  - [十三、装饰器](docs/tutorial.md#十三装饰器)
+  - [十四、typescript4.0 特性](docs/tutorial.md#十四typescript40-特性)
+  - [十五、编译上下文](docs/tutorial.md#十五编译上下文)
+  - [十六、typescript 开发辅助函数](docs/tutorial.md#十六typescript-开发辅助函数)
+  - [十七、参考工具](docs/tutorial.md#十七参考工具)
 - [第一章:Type Manipulation 类型操作](./docs/1.Type%20Manipulation.md)
 
   - [1.1 范型](./docs/1.Type%20Manipulation.md#11-范型)
