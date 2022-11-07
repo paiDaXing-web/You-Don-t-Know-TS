@@ -64,7 +64,7 @@
     - [7.2 箭头函数](docs/tutorial.md#72-尖头函数)
       - [7.2.1.常见语法](docs/tutorial.md#721-常见于法)
       - [7.2.2.使用示例](docs/tutorial.md#722-使用示例)
-    - [7.3 参数类型和返回类型](docs/tutorial.md#73-参数类型和返回类型\)
+    - [7.3 参数类型和返回类型](docs/tutorial.md#73-参数类型和返回类型)
     - [7.4 函数类型](docs/tutorial.md#74-函数类型)
     - [7.5 可选参数及默认参数](docs/tutorial.md#75-可选参数及默认参数)
     - [7.6 剩余参数](docs/tutorial.md#76-剩余参数)
