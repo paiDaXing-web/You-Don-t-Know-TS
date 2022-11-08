@@ -1,0 +1,1 @@
+import{_ as e,o as s,c as t,b as c}from"./app.4770c8b3.js";const o={},_=c("p",null,"This is theme.",-1),n=[_];function a(r,l){return s(),t("div",null,n)}const d=e(o,[["render",a],["__file","base-3.html.vue"]]);export{d as default};
