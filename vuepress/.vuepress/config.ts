@@ -14,6 +14,14 @@ export default defineUserConfig({
     docsDir: "example",
     lastUpdatedText: "",
     // series 为原 sidebar
+    commentConfig: {
+      type: "valine",
+      options: {
+        appId: "ruETVFJr7b2RWtzUVt27xcgl-gzGzoHsz", // your appId
+        appKey: "zQaIwV58xzD8AS6GKTh55KyD", // your appKey
+        hideComments: true, // 全局隐藏评论，默认 false
+      },
+    },
     series: {
       "/docs/theme-reco/": [
         {
