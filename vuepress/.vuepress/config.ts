@@ -55,7 +55,7 @@ export default defineUserConfig({
       //   { text: "Categories", link: "/categories/reco/1/" },
       { text: "Tags", link: "/tags/tag1/1/" },
       {
-        text: "《You Dont Know TS》",
+        text: "TypeScript",
         children: [
           { text: "第一卷", link: "/docs/theme-reco/base-1" },
           { text: "第二卷", link: "/docs/theme-reco/Advanced-1" },
