@@ -3,13 +3,13 @@ title: 第一章:Type Manipulation 类型操作
 date: 2020/05/29
 ---
 
-### 1.Type Manipulation 类型操作
+## 1.Type Manipulation 类型操作
 
 ::: tip
 在掌握 TS 基本的类型知识知识后，面对复杂的源码和复杂类型逻辑，我们仍然束手无策。其实我们还需要再次基础之上，将基础类型联合起来做出更多优雅的类型声明。TypeScript 中有很多关键字，如果不去主动接触的话就会少了很多可操作性。例如：infer、keyof、typeof、extends 之类的。还有映射和模板字符串这种概念
 :::
 
-#### 1.1 范型
+### 1.1 范型
 
 ```typescript
 function identity<Type>(arg: Type): Type {
@@ -33,11 +33,11 @@ let myIdentify: GenericIdentifyFn = identify
 
 ```
 
-#### 1.2 keyof 类型操作符
+### 1.2 keyof 类型操作符
 
 TypeScript 允许我们遍历某种类型的属性，并通过 keyof 操作符提取其属性的名称。keyof 操作符是在 TypeScript 2.1 版本引入的，该操作符可以用于获取某种类型的所有键，其返回类型是联合类型。
 
-##### keyof 介绍
+#### keyof 介绍
 
 - 接口
 
@@ -87,7 +87,7 @@ type P4 = string[]["push"]; // (...items: string[]) => number
 type P5 = string[][0]; // string
 ```
 
-##### keyof 作用
+#### keyof 作用
 
 JavaScript 是一种高度动态的语言。有时在静态类型系统中捕获某些操作的语义可能会很棘手。以一个简单的 prop 函数为例：
 
@@ -166,7 +166,7 @@ Argument of type '"date"' is not assignable to parameter of type '"id" | "text" 
 
 这就阻止我们尝试读取不存在的属性
 
-##### keyof 与对象的数值属性
+#### keyof 与对象的数值属性
 
 在使用对象的数值属性时，我们也可以使用 keyof 关键字。请记住，如果我们定义一个带有数值属性的对象，那么我们既需要定义该属性，又需要使用数组语法访问该属性， 如下所示：
 
@@ -217,7 +217,7 @@ console.log(`name = ${getCurrencyName(Currency.CNY, CurrencyName)}`);
 
 同样，getCurrencyName 函数和前面介绍的 prop 函数一样，使用了泛型和泛型约束，从而来保证属性的安全访问。最后，我们来简单介绍一下 keyof 与 typeof 操作符如何配合使用。
 
-##### keyof 与 typeof 操作符
+#### keyof VS typeof 操作符
 
 typeof 操作符用于获取变量的类型。因此这个操作符的后面接的始终是一个变量，且需要运用到类型定义当中。为了方便大家理解，我们来举一个具体的示例：
 
@@ -269,15 +269,15 @@ type K1 = keyof StringIndexArray; // type K1 = string | number
 type K2 = keyof NumberIndexArray; // type K2 = number
 ```
 
-##### 参考资料
+#### 参考资料
 
 ● [keyof-and-lookup-types-in-typescript](https://mariusschulz.com/blog/keyof-and-lookup-types-in-typescript)<br/>
 ● [keyof-inferring-string-number-when-key-is-only-a-string](https://stackoverflow.com/questions/51808160/keyof-inferring-string-number-when-key-is-only-a-string)<br/>
 ● [typescriptlang - indexable-types](https://www.typescriptlang.org/docs/handbook/interfaces.html#indexable-types)
 
-#### 1.3 typeof 操作符
+### 1.3 typeof 操作符
 
-##### 简介
+#### 简介
 
 在 JavaScript 中，你可以通过 typeof 操作符获取变量的类型，在 TypeScript 中，typeof 操作符可以用来获取一个变量或对象的类型。
 
@@ -297,7 +297,7 @@ type Sem = typeof sem; // type Sem = Person
 const lolo: Sem = { name: "lolo", age: 5 };
 ```
 
-##### 应用场景
+#### 应用场景
 
 - 1.Get the type of the object
   ![1](../assets/typeof-object.png)
@@ -329,7 +329,7 @@ type Address = Person["address"];
      ![4](../assets/class3.png)
      从上图可以看出，在使用了 const 断言之后，再使用 typeof 操作符，我们可以得到更精确的类型。
 
-##### const 断言
+#### const 断言
 
 TypeScript 3.4 引入了一种新的字面量构造方式，也称为 const 断言。当我们使用 const 断言构造新的字面量表达式时，我们可以向编程语言发出以下信号：
 ● 表达式中的任何字面量类型都不应该被扩展；
@@ -393,7 +393,7 @@ foo.contents = []; // error!
 foo.contents.push(5); // ...works!
 ```
 
-##### typeof 和 keyof 操作符
+#### typeof 和 keyof 操作符
 
 在 TypeScript 中，typeof 操作符可以用来获取一个变量或对象的类型。而 keyof 操作符可以用于获取某种类型的所有键，其返回类型是联合类型。了解完 typeof 和 keyof 操作符的作用，我们来举个例子，介绍一下它们如何结合在一起使用：
 
@@ -414,18 +414,18 @@ color = "blue"; // Ok
 color = "yellow"; // Error
 ```
 
-##### 参考资料
+#### 参考资料
 
 ● typescript-get-types-from-data-using-typeof
 ● 5 Very Useful Tricks for TypeScript Typeof Operator
 
-#### 1.4 条件类型
+### 1.4 条件类型
 
 您是否使用过 Exclude、Extract、NonNullable、Parameters 和 ReturnType 实用程序类型？ 你知道他们在内部是如何工作的吗？ 其实上面的 TypeScript 内置的实用程序类型都是基于条件开发的。
 
 ![4](../assets/ConditionalTS.gif)
 
-##### 介绍
+#### 介绍
 
 条件类型（Conditional Types）有助于描述输入与输出类型之间的关系。
 
@@ -442,7 +442,7 @@ type Example2 = RegExp extends Animal ? number : string;
 //type Example2 = string
 ```
 
-##### extend 用于条件判断时以下规律
+#### extend 用于条件判断时以下规律
 
 ● 若位于 extends 两侧的类型相同，则 extends 在语义上可以理解为===，如：
 
@@ -465,7 +465,7 @@ type result3 = string extends string | number ? true : false; // true
 type result4 = { a: true; b: false } extends { a: true } ? true : false; // true
 ```
 
-##### 分布式条件类型
+#### 分布式条件类型
 
 条件类型还有一个特性：分布式条件类型。在结合联合类型使用时（只针对 extends 左边的联合类型），分布式条件类型会被自动分发成联合类型。
 ![4](../assets/ConditionalTS.gif)
@@ -534,7 +534,7 @@ type WrappedType<T> = Array<T> extends Array<boolean> ? "yes" : "no";
 type NonDistributedUsage = WrappedType<number | boolean>; // "no"
 ```
 
-##### 类型推断 infer
+#### 类型推断 infer
 
 在条件类型语句中，可以用 infer 声明一个类型变量并且对它进行使用。
 推断用于声明一个类型变量，以存储模式匹配期间捕获的类型。
@@ -612,11 +612,11 @@ type U5 = Bar<{ a: (x: string) => void; b: (x: number) => void }>; // string & n
 ![4](../assets/infer-10.gif)
 U5 类型返回由字符串和数字类型组成的交集类型，即最终类型从不为类型。
 
-#### 1.5 映射类型 Mapped Type
+### 1.5 映射类型 Mapped Type
 
 在数学中，映射是指两个元素的集合之间元素相互对应的关系，可以将映射理解为函数，如上图，当我们需要将集合 A 的元素转换为集合 B 的元素，可以通过 f 函数做映射，比如将集合 A 的元素 1 对应到集合 B 中的元素 2。
 
-###### 介绍
+##### 介绍
 
 你知道 Partial, Required, Readonly, 和 Pick 实用类型的实现原理吗？
 ![4](../assets/Wapped-1.jpeg)
@@ -663,7 +663,7 @@ type ReadonlyUser = {
 ![4](../assets/Wapped-6.gif)
 ![4](../assets/Wapped-7.jpeg)
 
-##### 映射语法：
+#### 映射语法：
 
 ![4](../assets/Wapped-8.jpeg)
 其中

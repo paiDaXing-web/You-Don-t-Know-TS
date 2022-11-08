@@ -15,7 +15,7 @@ date: 2022/10/27
 
 ### 12.1 泛型语法
 
-对于刚接触 TypeScript 泛型的读者来说，首次看到 <T> 语法会感到陌生。其实它没有什么特别，就像传递参数一样，我们传递了我们想要用于特定函数调用的类型。
+对于刚接触 TypeScript 泛型的读者来说，首次看到&lt;T&gt; 语法会感到陌生。其实它没有什么特别，就像传递参数一样，我们传递了我们想要用于特定函数调用的类型。
 
 ![1](../assets/5.2generics.png)
 
@@ -181,7 +181,7 @@ loggingIdentity({ length: 10, value: 3 });
 
 #### 12.4.6.Partial
 
-Partial<T> 的作用就是将某个类型里的属性全部变为可选项 ?。
+Partial&lt;T&gt; 的作用就是将某个类型里的属性全部变为可选项 ?。
 
 定义：
 
@@ -220,7 +220,7 @@ const todo2 = updateTodo(todo1, {
 });
 ```
 
-在上面的 updateTodo 方法中，我们利用 Partial<T> 工具类型，定义 fieldsToUpdate 的类型为 Partial<Todo>，即：
+在上面的 updateTodo 方法中，我们利用 Partial&lt;T&gt; 工具类型，定义 fieldsToUpdate 的类型为 Partial&lt;Todo&gt;，即：
 
 ```typescript
 {
