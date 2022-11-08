@@ -143,7 +143,7 @@ Semlinker: string
 
 ### 5.3 泛型类
 
-在类中使用泛型也很简单，我们只需要在类名后面，使用 <T, ...> 的语法定义任意多个类型变量，具体示例如下：
+在类中使用泛型也很简单，我们只需要在类名后面，使用 &lt;T, ...&gt; 的语法定义任意多个类型变量，具体示例如下：
 
 ```typescript
 interface GenericInterface<U> {
@@ -241,7 +241,7 @@ identity(68); // Error
 // Argument of type '68' is not assignable to parameter of type 'Length'.(2345)
 ```
 
-此外，我们还可以使用 , 号来分隔多种约束类型，比如：<T extends Length, Type2, Type3>。而对于上述的 length 属性问题来说，如果我们显式地将变量设置为数组类型，也可以解决该问题，具体方式如下：
+此外，我们还可以使用 , 号来分隔多种约束类型，比如：&lt;T extends Length, Type2, Type3&gt;。而对于上述的 length 属性问题来说，如果我们显式地将变量设置为数组类型，也可以解决该问题，具体方式如下：
 
 ```typescript
 function identity<T>(arg: T[]): T[] {
@@ -319,7 +319,7 @@ Argument of type '"superset_of"' is not assignable to parameter of type
 
 在 TypeScript 2.3 以后，我们可以为泛型中的类型参数指定默认类型。当使用泛型时没有在代码中直接指定类型参数，从实际值参数中也无法推断出类型时，这个默认类型就会起作用。
 
-泛型参数默认类型与普通函数默认值类似，对应的语法很简单，即 <T=Default Type>，对应的使用示例如下：
+泛型参数默认类型与普通函数默认值类似，对应的语法很简单，即 &lt;T=Default Type&gt;，对应的使用示例如下：
 
 ```typescript
 interface A<T = string> {
@@ -437,7 +437,7 @@ const todo2 = updateTodo(todo1, {
 });
 ```
 
-在上面的 updateTodo 方法中，我们利用 Partial&lt;T&gt; 工具类型，定义 fieldsToUpdate 的类型为 Partial<Todo>，即：
+在上面的 updateTodo 方法中，我们利用 Partial&lt;T&gt; 工具类型，定义 fieldsToUpdate 的类型为 Partial&lt;Todo&gt;，即：
 
 ```typescript
 {
@@ -448,7 +448,7 @@ const todo2 = updateTodo(todo1, {
 
 #### 5.7.2 Record
 
-Record<K extends keyof any, T> 的作用是将 K 中所有的属性的值转化为 T 类型。
+Record&lt;K extends keyof any, T&gt;的作用是将 K 中所有的属性的值转化为 T 类型。
 
 「定义：」
 
@@ -514,7 +514,7 @@ const todo: TodoPreview = {
 
 #### 5.7.4 Exclude
 
-Exclude<T, U> 的作用是将某个类型中属于另一个的类型移除掉。
+Exclude&lt;T, U&gt; 的作用是将某个类型中属于另一个的类型移除掉。
 
 「定义：」
 
