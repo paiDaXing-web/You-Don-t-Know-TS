@@ -139,5 +139,6 @@ export default defineUserConfig({
     //   // hideComments: true // 隐藏评论
     // },
   }),
+  base: "/you-dont-know-ts/",
   // debug: true,
 });
