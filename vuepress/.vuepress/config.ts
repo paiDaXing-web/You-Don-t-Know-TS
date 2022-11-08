@@ -8,8 +8,8 @@ export default defineUserConfig({
   theme: recoTheme({
     style: "@vuepress-reco/style-default",
     logo: "/logo.png",
-    author: "reco_luan",
-    docsRepo: "https://github.com/vuepress-reco/vuepress-theme-reco-next",
+    author: "maxueming",
+    docsRepo: "https://github.com/paiDaXing-web/You-Don-t-Know-TS",
     docsBranch: "main",
     docsDir: "example",
     lastUpdatedText: "",
@@ -17,25 +17,61 @@ export default defineUserConfig({
     series: {
       "/docs/theme-reco/": [
         {
-          text: "module one",
-          children: ["home", "theme"],
+          text: "Typescript基础知识",
+          children: [
+            "base-1",
+            "base-2",
+            "base-3",
+            "base-4",
+            "base-5",
+            "base-6",
+            "base-7",
+            "base-8",
+            "base-9",
+            "base-10",
+            "base-11",
+            "base-12",
+            "base-13",
+            "base-14",
+            "base-15",
+            "base-16",
+            "base-17",
+          ],
         },
         {
-          text: "module two",
-          children: ["api", "plugin"],
+          text: "Typescript进阶",
+          children: [
+            "Advanced-1",
+            "Advanced-2",
+            "Advanced-3",
+            "Advanced-4",
+            "Advanced-5",
+          ],
         },
       ],
     },
     navbar: [
-      { text: "Home", link: "/" },
-      { text: "Categories", link: "/categories/reco/1/" },
+      { text: "首页", link: "/" },
+      //   { text: "Categories", link: "/categories/reco/1/" },
       { text: "Tags", link: "/tags/tag1/1/" },
       {
-        text: "Docs",
+        text: "教程",
         children: [
-          { text: "vuepress-reco", link: "/docs/theme-reco/theme" },
-          { text: "vuepress-theme-reco", link: "/blogs/other/guide" },
+          { text: "基础", link: "/docs/theme-reco/base-1" },
+          { text: "进阶", link: "/docs/theme-reco/Advanced-1" },
         ],
+      },
+      {
+        text: "挑战",
+        children: [
+          { text: "简单", link: "/docs/theme-reco/theme" },
+          { text: "中等", link: "/blogs/other/guide" },
+          { text: "困难", link: "/blogs/other/guide" },
+        ],
+      },
+      {
+        text: "Github",
+        link: "https://github.com/paiDaXing-web/You-Don-t-Know-TS",
       },
     ],
     bulletin: {
