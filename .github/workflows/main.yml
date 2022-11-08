@@ -16,7 +16,7 @@ jobs:
       # 使用别人的action
       - uses: actions/checkout@v2
       # 步骤名称
-      - name: deploy
+      - name: yarn&build
         # 步骤执行指令
         run: sh deploy.sh
       #- name: yarn build

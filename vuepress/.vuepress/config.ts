@@ -55,7 +55,7 @@ export default defineUserConfig({
       //   { text: "Categories", link: "/categories/reco/1/" },
       { text: "Tags", link: "/tags/tag1/1/" },
       {
-        text: "全书",
+        text: "《You Dont Know TS》",
         children: [
           { text: "第一卷", link: "/docs/theme-reco/base-1" },
           { text: "第二卷", link: "/docs/theme-reco/Advanced-1" },
@@ -78,7 +78,7 @@ export default defineUserConfig({
       body: [
         {
           type: "text",
-          content: `🎉🎉🎉 reco 主题 2.x 已经接近 Beta 版本，在发布 Latest 版本之前不会再有大的更新，大家可以尽情尝鲜了，并且希望大家在 QQ 群和 GitHub 踊跃反馈使用体验，我会在第一时间响应。`,
+          content: `🎉🎉🎉 《You Dont Know TypeScript》本书正式发布,欢迎大家Issues 问题，积极交流，如遇问题可联系作者。`,
           style: "font-size: 12px;",
         },
         {
@@ -86,15 +86,13 @@ export default defineUserConfig({
         },
         {
           type: "title",
-          content: "QQ 群",
+          content: "管理员微信",
         },
         {
           type: "text",
           content: `
           <ul>
-            <li>QQ群1：1037296104</li>
-            <li>QQ群2：1061561395</li>
-            <li>QQ群3：962687802</li>
+            <li>小助手1：MXM13641044045</li>
           </ul>`,
           style: "font-size: 12px;",
         },
@@ -109,8 +107,8 @@ export default defineUserConfig({
           type: "text",
           content: `
           <ul>
-            <li><a href="https://github.com/vuepress-reco/vuepress-theme-reco-next/issues">Issues<a/></li>
-            <li><a href="https://github.com/vuepress-reco/vuepress-theme-reco-next/discussions/1">Discussions<a/></li>
+            <li><a href="https://github.com/paiDaXing-web">Github<a/></li>
+            <li><a href="https://github.com/paiDaXing-web/You-Don-t-Know-TS/issues">Issues<a/></li>
           </ul>`,
           style: "font-size: 12px;",
         },
