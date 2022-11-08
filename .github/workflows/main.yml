@@ -18,7 +18,7 @@ jobs:
       # 步骤名称
       - name: deploy
         # 步骤执行指令
-        run: sh deploy
+        run: sh deploy.sh
       #- name: yarn build
       #run: yarn build
       # 命名这个任务为发布Deploy
