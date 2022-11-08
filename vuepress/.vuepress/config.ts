@@ -57,6 +57,33 @@ export default defineUserConfig({
           ],
         },
       ],
+      "/docs/challenge/": [
+        {
+          text: "第一章:简单",
+          children: ["1.1.hello-world", "1.2.Pick"],
+        },
+        {
+          text: "第二章:中等",
+          children: [
+            "middle/1.Pick",
+            "middle/Pick",
+            "middle/Pick",
+            "middle/Pick",
+            "middle/Pick",
+            "middle/Pick",
+            "middle/Pick",
+          ],
+        },
+        {
+          text: "第三章:困难",
+          children: [
+            "hard/Simple-Vue",
+            "hard/Simple-Vue",
+            "hard/Simple-Vue",
+            "hard/Simple-Vue",
+          ],
+        },
+      ],
     },
     navbar: [
       { text: "首页", link: "/" },
@@ -72,7 +99,7 @@ export default defineUserConfig({
       {
         text: "挑战",
         children: [
-          { text: "简单", link: "/docs/theme-reco/theme" },
+          { text: "简单", link: "/docs/challenge/easy" },
           { text: "中等", link: "/blogs/other/guide" },
           { text: "困难", link: "/blogs/other/guide" },
         ],
