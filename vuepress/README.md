@@ -16,7 +16,7 @@ bannerBrand:
   heroText: You-Don't-Know-TypeScript
   tagline: 这是一个专注研究Typescript的网站，在这里你可以全面深入学习Typescript相关知识，你还可以挑战相应的题目，快来学习吧。
   buttons:
-    - { text: 我要学习, link: "/you-dont-know-ts/docs/theme-reco/base-1" }
+    - { text: 我要学习, link: "/you-dont-know-ts/docs/theme-reco/base-1.html" }
     - {
         text: 我要挑战,
         link: "/docs/style-default-api/introduce",

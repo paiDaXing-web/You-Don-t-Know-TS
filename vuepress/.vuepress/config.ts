@@ -120,7 +120,7 @@ export default defineUserConfig({
           children: [
             {
               text: "打赏",
-              link: "/docs/others/donate.html",
+              link: "/you-dont-know-ts/docs/others/donate.html",
             },
           ],
         },
