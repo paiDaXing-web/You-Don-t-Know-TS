@@ -17,7 +17,7 @@ export default defineUserConfig({
     series: {
       "/docs/theme-reco/": [
         {
-          text: "Typescript基础知识",
+          text: "第一卷:基础概念篇",
           children: [
             "base-1",
             "base-2",
@@ -39,7 +39,7 @@ export default defineUserConfig({
           ],
         },
         {
-          text: "Typescript进阶",
+          text: "第二卷:原理进阶篇",
           children: [
             "Advanced-1",
             "Advanced-2",
@@ -55,10 +55,10 @@ export default defineUserConfig({
       //   { text: "Categories", link: "/categories/reco/1/" },
       { text: "Tags", link: "/tags/tag1/1/" },
       {
-        text: "教程",
+        text: "全书",
         children: [
-          { text: "基础", link: "/docs/theme-reco/base-1" },
-          { text: "进阶", link: "/docs/theme-reco/Advanced-1" },
+          { text: "第一卷", link: "/docs/theme-reco/base-1" },
+          { text: "第二卷", link: "/docs/theme-reco/Advanced-1" },
         ],
       },
       {
