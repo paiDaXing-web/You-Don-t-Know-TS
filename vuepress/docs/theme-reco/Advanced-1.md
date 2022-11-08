@@ -572,6 +572,7 @@ type U1 = UnpackedFn<T1>; // string
 
 当涉及到函数重载场景时，TypeScript 将使用最后一个调用签名进行类型推断。
 ![4](../assets/infer-6.gif)
+
 ![4](../assets/infer-7.jpeg)
 
 - 推断对象类型
@@ -654,13 +655,16 @@ type ReadonlyUser = {
 ```
 
 ![4](../assets/Mapped-2.gif)
+
 ![4](../assets/Mapped-3.jpeg)
 使用映射类型减少重复代码，映射类型是可用于将原始对象类型映射到新对象类型的泛型类型。
 
 ![4](../assets/Mapped-4.gif)
+
 ![4](../assets/Mapped-5.jpeg)
 查看已经定义的三个与用户相关的类型，您会发现它们包含大量重复的代码。
 ![4](../assets/Mapped-6.gif)
+
 ![4](../assets/Mapped-7.jpeg)
 
 #### 映射语法：
@@ -698,6 +702,7 @@ type UserPartial = MyPartial<User>;
 - ● { [P in keyof T] ?: T[P] | undefined}：遍历 keyof T 返回的联合类型，并定义用 P 变量接收，其每次遍历返回的值为可选类型的 T[P]。
   映射完整演示
   ![4](../assets/Wapped-11.gif)
+
   ![4](../assets/Wapped-12.jpeg)
 
 ```typescript
@@ -716,6 +721,7 @@ type KindlessCircle = RemoveKindField<Circle>;
 ```
 
 ![4](../assets/Wapped-13.gif)
+
 ![4](../assets/Wapped-14.jpeg)
 
 - 重新映射键（TS 4.1）
@@ -749,4 +755,5 @@ type LazyPerson = Getters<Person>;
 ```
 
 ![4](../assets/Wapped-15.gif)
+
 ![4](../assets/Wapped-16.jpeg)
