@@ -12,8 +12,13 @@
   },
   "dependencies": {
     "@type-challenges/utils": "^0.1.1",
+    "@vuepress/plugin-google-analytics": "^1.9.7",
+    "@vuepress/plugin-shiki": "^2.0.0-beta.5",
+    "install": "^0.13.0",
     "monaco-editor": "^0.34.1",
+    "npm": "^8.19.3",
     "vuepress": "2.0.0-beta.51",
+    "vuepress-plugin-sandbox": "^0.1.10",
     "vuepress-theme-reco": "2.0.0-beta.41"
   }
 }

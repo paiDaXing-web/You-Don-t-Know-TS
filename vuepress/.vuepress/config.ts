@@ -1,6 +1,7 @@
 import { defineUserConfig } from "vuepress";
-import type { DefaultThemeOptions } from "vuepress";
+import sandboxPlugin from "vuepress-plugin-sandbox";
 import recoTheme from "vuepress-theme-reco";
+import { plugins } from "./plugins";
 
 export default defineUserConfig({
   title: "You-Dont-Know-TS",
@@ -172,6 +173,8 @@ export default defineUserConfig({
     //   // hideComments: true // 隐藏评论
     // },
   }),
+
   base: "/you-dont-know-ts/",
   // debug: true,
+  plugins,
 });
