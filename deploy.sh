@@ -1,4 +1,4 @@
 
 cd vuepress
-npm install
-npm run  build
+yarn 
+yarn build
