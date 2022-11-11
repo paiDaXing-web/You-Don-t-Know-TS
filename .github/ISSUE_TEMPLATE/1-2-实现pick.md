@@ -1,7 +1,7 @@
 ---
-name: 1.1.hello-world
-about: " 分享你的答案"
-title: 1.1.hello-world
+name: 1.2.实现Pick
+about: 实现Pick
+title: 1.2.实现Pick
 labels: answer
 assignees: paiDaXing-web
 
