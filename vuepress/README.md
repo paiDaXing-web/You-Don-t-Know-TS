@@ -19,7 +19,7 @@ bannerBrand:
     - { text: 我要学习, link: "/you-dont-know-ts/docs/theme-reco/base-1.html" }
     - {
         text: 我要挑战,
-        link: "/you-dont-know-ts/docs/docs/challenge/1.1.hello-world.html",
+        link: "/you-dont-know-ts/docs/challenge/1.1.hello-world.html",
         type: "plain",
       }
 isShowTitleInHome: true
