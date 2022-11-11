@@ -1,5 +1,6 @@
 import { defineUserConfig } from "vuepress";
 import type { DefaultThemeOptions } from "vuepress";
+
 import recoTheme from "vuepress-theme-reco";
 
 export default defineUserConfig({
@@ -22,6 +23,7 @@ export default defineUserConfig({
         hideComments: true, // 全局隐藏评论，默认 false
       },
     },
+
     series: {
       "/docs/theme-reco/": [
         {
@@ -172,6 +174,7 @@ export default defineUserConfig({
     //   // hideComments: true // 隐藏评论
     // },
   }),
+
   base: "/you-dont-know-ts/",
   // debug: true,
 });
