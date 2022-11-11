@@ -1,10 +1,9 @@
 ---
-name: 1-hello World
+name: 1.1.hello-world
 about: " 分享你的答案"
-title: answer
+title: 1.1.hello-world
 labels: answer
 assignees: paiDaXing-web
-
 ---
 
 <!--
@@ -18,7 +17,6 @@ assignees: paiDaXing-web
 
 谢谢！
 -->
-
 
 ```ts
 // 你的答案
