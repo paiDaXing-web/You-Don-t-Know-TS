@@ -469,3 +469,7 @@ type Foo = string | number | boolean;
 然而他忘记同时修改 controlFlowAnalysisWithNever 方法中的控制流程，这时候 else 分支的 foo 类型会被收窄为 boolean 类型，导致无法赋值给 never 类型，这时就会产生一个编译错误。通过这个方式，我们可以确保
 
 controlFlowAnalysisWithNever 方法总是穷尽了 Foo 的所有可能类型。 通过这个示例，我们可以得出一个结论：使用 never 避免出现新增了联合类型没有对应的实现，目的就是写出类型绝对安全的代码。
+
+### 2.14 练习题 知识巩固
+
+[![去答题 1.3w+](https://img.shields.io/badge/去答题-welcome-1.3w+.svg?style=flat-square)](../challenge/1.1.hello-world.md)

@@ -543,6 +543,10 @@ type Foo = string | number | boolean;
 
 controlFlowAnalysisWithNever 方法总是穷尽了 Foo 的所有可能类型。 通过这个示例，我们可以得出一个结论：使用 never 避免出现新增了联合类型没有对应的实现，目的就是写出类型绝对安全的代码。
 
+### 2.14 练习题 知识巩固
+
+https://img.shields.io/badge/{去答题}-{1.3w+}-{green}.svg
+
 ## 三、typescript 断言
 
 ### 3.1 类型断言

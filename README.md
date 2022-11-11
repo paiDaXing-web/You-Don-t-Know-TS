@@ -1,6 +1,19 @@
 <p align='center'>
   <img src='./assets/logo.png' width='100%'/>
 </p>
+
+<p align='center'>Collection of TypeScript type challenges</p>
+
+<p align='center'>
+  <a href='https://discord.gg/UgKBCq9'>
+    <img src='https://badgen.net/badge/icon/typescript?icon=typescript&label'/>
+  </a>
+  <a href='https://www.typescriptlang.org/play?install-plugin=%40type-challenges%2Fplayground-plugin'>
+    <img src='https://img.shields.io/badge/Playground-143?logo=typescript&color=3178C6&logoColor=fff' />
+  </a>
+</p>
+
+<br>
 <br/>
 
 ### 目录
