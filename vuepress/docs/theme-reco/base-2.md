@@ -472,4 +472,4 @@ controlFlowAnalysisWithNever 方法总是穷尽了 Foo 的所有可能类型。 
 
 ### 2.14 练习题 知识巩固
 
-[![去答题 1.3w+](https://img.shields.io/badge/去答题-welcome-1.3w+.svg?style=flat-square)](../challenge/1.1.hello-world.md)
+- [![去答题 1.3w+](https://img.shields.io/badge/去答题-1.3w+-brightgreen.svg)](../challenge/1.1.hello-world.md)
