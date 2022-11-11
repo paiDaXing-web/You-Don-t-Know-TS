@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <iframe
-      :src="this.surl"
+      :src="surl"
       scrolling="no"
       border="0"
       frameborder="no"
@@ -18,11 +18,5 @@
 export default {
   name: "App",
   props: ["surl"],
-
-  data() {
-    return {
-      surl: this.surl,
-    };
-  },
 };
 </script>
