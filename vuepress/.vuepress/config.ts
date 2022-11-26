@@ -62,7 +62,13 @@ export default defineUserConfig({
       "/docs/challenge/": [
         {
           text: "第一章:简单",
-          children: ["1.1.hello-world", "1.2.Pick", "1.3.Awaited"],
+          children: [
+            "1.1.hello-world",
+            "1.2.Pick",
+            "1.3.Awaited",
+            "1.4.Readonly",
+            "1.5.Tuple-to-object",
+          ],
         },
         {
           text: "第二章:中等",
