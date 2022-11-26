@@ -69,6 +69,7 @@ export default defineUserConfig({
             "1.4.Readonly",
             "1.5.Tuple-to-object",
             "1.6.First-of-arrray",
+            "1.7.Length-of-Tuple",
           ],
         },
         {
