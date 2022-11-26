@@ -68,6 +68,7 @@ export default defineUserConfig({
             "1.3.Awaited",
             "1.4.Readonly",
             "1.5.Tuple-to-object",
+            "1.6.First-of-arrray",
           ],
         },
         {
