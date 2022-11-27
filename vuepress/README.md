@@ -1,8 +1,9 @@
 ---
 home: true
 modules:
-  - BannerBrand
-  - MdContent
+  #   - BannerBrand
+  #   - MdContent
+  - CustomModule
   - Footer
 bannerBrand:
   heroImage: /logo.png
@@ -22,39 +23,48 @@ bannerBrand:
         link: "/you-dont-know-ts/docs/challenge/1.1.hello-world.html",
         type: "plain",
       }
+customModule:
+  heroImage: /logo.png
+  heroImageStyle:
+    maxWidth: "300px"
+    width: "100%"
+    display: block
+    margin: "0 auto 1rem"
+    borderRadius: "1rem"
+  bgImage: "/bg.svg"
+  heroText: TypeScript 教程
+  tagline: 易学易懂，题目练习，适合初级、中级、高级TypeScript学习。
+  buttons:
+    - {
+        text: 我要学习->,
+        link: "/you-dont-know-ts/docs/theme-reco/base-1.html",
+      }
+    - {
+        text: 练习题目,
+        link: "/you-dont-know-ts/docs/challenge/1.1.hello-world.html",
+        type: "plain",
+      }
+  feature:
+    - {
+        title: 易学易懂,
+        desc: 对Typescript知识点整理，由整体框架学习到每个模块精细化学习，逐渐击破,
+      }
+    - {
+        title: 动画演示,
+        desc: 对Typescript一些泛型、实用操作、映射等复杂且常用知识点动画演示知识点，逐个击破,
+      }
+    - {
+        title: 现学先练,
+        desc: 对Typescript知识点总结，可以通过内置在线编辑器练习题目，由简单到复杂，巩固学习,
+      }
+
 isShowTitleInHome: true
 actionText: About
 actionLink: /views/other/about
-features:
-  - title: 过去
-    details: 开发一款看着开心、写着顺手的 vuepress 博客主题。
-  - title: 当下
-    details: 帮助更多的朋友节省时间去用心书写内容，而不是仅仅配置一个博客去孤芳自赏。
-  - title: 未来
-    details: 吸引更多的朋友参与到开发中来，继续强大功能。
+footer: # 底部模块的配置
+  record: youjia.sx.cn
+  recordLink: youjia.sx.cn
+  cyberSecurityRecord: 公安备案文案
+  cyberSecurityLink: 公安备案地址
+  startYear: 2022
 ---
-
-## 快速开始
-
-**npx**
-
-```bash
-# 初始化，并选择 2.x
-npx @vuepress-reco/theme-cli init
-```
-
-**npm**
-
-```bash
-# 初始化，并选择 2.x
-npm install @vuepress-reco/theme-cli@1.0.7 -g
-theme-cli init
-```
-
-**yarn**
-
-```bash
-# 初始化，并选择 2.x
-yarn global add @vuepress-reco/theme-cli@1.0.7
-theme-cli init
-```
