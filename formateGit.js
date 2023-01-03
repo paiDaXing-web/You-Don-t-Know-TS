@@ -1,0 +1,192 @@
+var fs = require("fs");
+var path = require("path");
+// console.log(path.resolve(__dirname, "/example"));
+fs.readdir(
+  path.join(__dirname, "./vuepress/docs/challenge"),
+  function (err, files) {
+    if (err) {
+      return console.log("目录不存在");
+    }
+    console.log(files);
+    files.forEach((item) => {
+      const Arr = item.replaceAll(".", "-");
+
+      fs.readFile(
+        path.join(
+          __dirname,
+          "./.github/ISSUE_TEMPLATE/" +
+            insertStr(Rep(Arr, Arr.length - 3, "."), getNum(Arr) - 1, "实现")
+        ),
+        function (err, fileitem) {
+          if (err) {
+            const console=`---
+            name: 1.4.实现Readonly
+            about: 实现Readonly
+            title: 1.4.实现Readonly
+            labels: answer
+            assignees: paiDaXing-web
+            
+            ---
+            
+            <!--
+            小贴士：
+            
+            🎉 恭喜你成功解决了挑战，很高兴看到你愿意分享你的答案！
+            
+            由于用户数量的增加，Issue 池可能会很快被答案填满。为了保证 Issue 讨论的效率，在提交 Issue 前，请利用搜索查看是否有其他人分享过类似的档案。
+            
+            你可以为其点赞，或者在 Issue 下追加你的想法和评论。如果您认为自己有不同的解法，欢迎新开 Issue 进行讨论并分享你的解题思路！
+            
+            谢谢！
+            -->
+            
+           \ ```ts
+            // 你的答案
+            ```
+            `
+            fs.writeFile(
+              path.join(
+                __dirname,
+                "./.github/ISSUE_TEMPLATE/" +
+                  insertStr(
+                    Rep(Arr, Arr.length - 3, "."),
+                    getNum(Arr) - 1,
+                    "实现"
+                  )
+              ),
+              content,
+              "utf8",
+              function (error) {
+                if (error) {
+                  console.log(error);
+                  return false;
+                }
+                console.log("写入成功");
+              }
+            );
+            // fs.mkdir(
+            //   path.join(__dirname, "./example/" + item?.slice(0, -3)),
+            //   function (error) {
+            //     if (error) {
+            //       throw new Error(error);
+            //     }
+            //     fs.readFile(
+            //       path.join(__dirname, "./docs/docs/Bridge/" + item),
+            //       (error, z) => {
+            //         if (error) {
+            //           console.log("data", data);
+            //           throw new Error(error);
+            //         } else {
+            //           let content = data
+            //             .toString()
+            //             .match(/```([\s\S]*?)```/g)[0];
+            //           content = content
+            //             .match(/bridge([\s\S]*?)```/g)[0]
+            //             .slice(0, -3);
+            //           content = formMateCatch(content);
+
+            //         }
+            //       }
+            //     );
+            //   }
+            // );
+          }
+          console.log(fileitem?.toString());
+          // fs.readFile(
+          //   path.join(__dirname, "./docs/docs/Bridge/" + item),
+          //   (error, data) => {
+          //     if (error) {
+          //       throw new Error(error);
+          //     } else {
+          //       let content =
+          //         data.toString().match(/```([\s\S]*?)```/g)?.[0] ?? "";
+          //       content =
+          //         content?.match(/bridge([\s\S]*?)```/g)?.[0]?.slice(0, -3) ?? "";
+          //       content = formMateCatch(content);
+          //       fs.writeFile(
+          //         path.join(__dirname, "./example/" + item?.slice(0, -3)) +
+          //           "/index.js",
+          //         content,
+          //         "utf8",
+          //         function (error) {
+          //           if (error) {
+          //             console.log(error);
+          //             return false;
+          //           }
+          //           console.log("写入成功");
+          //         }
+          //       );
+          //     }
+          //   }
+          // );
+        }
+      );
+    });
+  }
+);
+
+// function formMateCatch(data) {
+//   if (/import([\s\S]*?);/g.test(data.toString())) {
+//     string = data
+//       .toString()
+//       .replace(/import([\s\S]*?);/g, `import { bridge } from "${cdn}"; `);
+//   } else {
+//     string = `import { bridge } from "${cdn}";
+
+// ${data.toString()}`;
+//   }
+//   if (!/.catch([\s\S]*?)throw error/g.test(string)) {
+//     string = `${formMateCode(string)}.catch(error=>{
+//         throw error
+//      });`;
+//   }
+//   return string;
+// }
+// function formMateCode(string) {
+//   var str = string.trim();
+//   console.log(str);
+//   if (str[str.length - 1] === ";") {
+//     return str.slice(0, -1);
+//   } else {
+//     return str;
+//   }
+// }
+// const fsArr = files.filter((item) => item !== ".deploy-dist");
+
+// fsArr.forEach((file) => {
+//   fs.readFile(
+//     path.join(__dirname, "./example/" + file + "/index.js"),
+//     (error, data) => {
+//       if (error) {
+//         throw new Error(error);
+//       } else {
+//         let content = formMateCatch(data);
+//         fs.writeFile(
+//           path.join(__dirname, "./example/" + file + "/index.js"),
+//           content,
+//           (err) => {
+//             if (err) throw err;
+//             console.log("写入成功", file + "/index.js");
+//           }
+//         );
+//       }
+//     }
+//   );
+// });
+function Rep(str, index, subStr) {
+  return setCharAt(str, index, subStr);
+}
+function setCharAt(str, index, chr) {
+  if (index > str.length - 1) return str;
+  return str.substr(0, index) + chr + str.substr(index + 1);
+}
+function insertStr(str, index, insertStr) {
+  const ary = str.split(""); // 转化为数组
+  ary.splice(index, 0, insertStr); // 使用数组方法插入字符串
+  return ary.join(""); // 拼接成字符串后输出
+}
+function getNum(str) {
+  var pattern = new RegExp("[a-z]+");
+  var num = str.indexOf(str.match(pattern));
+  return num;
+}
