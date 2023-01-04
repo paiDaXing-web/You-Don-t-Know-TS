@@ -62,33 +62,29 @@ assignees: paiDaXing-web
             );
           }
           //   console.log(fileitem?.toString());
-          // fs.readFile(
-          //   path.join(__dirname, "./docs/docs/Bridge/" + item),
-          //   (error, data) => {
-          //     if (error) {
-          //       throw new Error(error);
-          //     } else {
-          //       let content =
-          //         data.toString().match(/```([\s\S]*?)```/g)?.[0] ?? "";
-          //       content =
-          //         content?.match(/bridge([\s\S]*?)```/g)?.[0]?.slice(0, -3) ?? "";
-          //       content = formMateCatch(content);
-          //       fs.writeFile(
-          //         path.join(__dirname, "./example/" + item?.slice(0, -3)) +
-          //           "/index.js",
-          //         content,
-          //         "utf8",
-          //         function (error) {
-          //           if (error) {
-          //             console.log(error);
-          //             return false;
-          //           }
-          //           console.log("写入成功");
-          //         }
-          //       );
-          //     }
-          //   }
-          // );
+          fs.readFile(
+            path.join(__dirname, "./.github/ISSUE_TEMPLATE/" + newTitle),
+            (error, data) => {
+              if (error) {
+                throw new Error(error);
+              } else {
+                let content = data.toString();
+
+                fs.writeFile(
+                  path.join(__dirname, "./.github/ISSUE_TEMPLATE/" + newTitle),
+                  content,
+                  "utf8",
+                  function (error) {
+                    if (error) {
+                      console.log(error);
+                      return false;
+                    }
+                    console.log("写入成功");
+                  }
+                );
+              }
+            }
+          );
         }
       );
     });
