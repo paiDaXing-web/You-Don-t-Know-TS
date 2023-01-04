@@ -1,0 +1,123 @@
+
+
+.dark :root {
+    --search-bg-color: #cd1a1a;
+    --search-accent-color: #3eaf7c;
+    --search-text-color: #2c3e50;
+    --search-border-color: #eaecef;
+    --search-item-text-color: #5d81a5;
+    --search-item-focus-bg-color: #f3f4f5;
+    --search-input-width: 8rem;
+    --search-result-width: 20rem;
+    --vp-c-divider-dark-1: rgba(84, 84, 84, .48);
+
+}
+body {
+    font-size: 14px;
+    font-family: "Inter var experimental", "Inter var", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 400;
+}
+
+.root {
+    --max-width-page: 850px;
+    --vp-c-divider-dark-1: rgba(60, 60, 60, .12);
+    --bp-c-diver-color: var(--vp-c-divider-dark-1)
+}
+
+.dark .navbar-container {
+    background-color: rgb(34 39 46 / 0.6);
+}
+
+.dark .navbar-container .site-brand {
+    background: url("../public/logo-dark.png");
+    background-size: cover;
+    width: 11rem;
+    height: 2rem;
+    margin-left: calc(50% - 425px - 16rem);
+}
+
+.dark .navbar-container .logo {
+    display: none;
+}
+
+.navbar-container .site-brand {
+    background: url("../public/logo-light.png");
+    background-size: cover;
+    width: 11rem;
+    height: 2rem;
+    margin-left: calc(50% - 425px - 16rem);
+   
+}
+.navbar-container .site-brand a{
+    width: 14rem;
+    height: 2rem;
+    display: inline-block;
+}
+.navbar-container .site-brand .logo {
+    display: none;
+}
+
+@media (min-width: 768px) {
+
+    .navbar-container .navbar-links-wrapper {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);
+        top: 0.75rem;
+        white-space: nowrap;
+        width: 565px;
+
+    }
+
+}
+
+@media (min-width: 768px) {
+
+    .theme-container .theme-reco-default-content,
+    .theme-container .page-container .page-title,
+    .theme-container .page-container .page-info,
+    .theme-container .page-meta,
+    .theme-container .page-nav,
+    .theme-container .reco-valine-wrapper,
+    .theme-container reco-vssue-wrapper {
+        max-width: 850px;
+    }
+
+    .series-container {
+        border-right-width: 0px;
+        width: calc(50% - 425px);
+        overflow-y: scroll;
+        overflow-x: hidden;
+        padding-left: calc(50% - 425px - 16rem);
+    }
+
+    .dark .series-container {
+        background-color: #1a1a1a;
+    }
+
+    .series-container {
+        background-color: #f9f9f9;
+    }
+
+    .page-catalog-container {
+        right: calc(50% - 425px - 17rem);
+        border-left: 1px solid rgba(60, 60, 60, .12);
+        top: 10rem;
+        bottom: auto;
+    }
+
+    .dark .page-catalog-container {
+        right: calc(50% - 425px - 17rem);
+        border-left: 1px solid rgba(84, 84, 84, .48);
+        top: 10rem;
+        bottom: auto;
+    }
+
+
+    .series-container::-webkit-scrollbar-thumb {
+        border-radius: 15px;
+        background-color: #949494e0;
+        padding: 1px;
+        margin: 2px;
+    }
+}
