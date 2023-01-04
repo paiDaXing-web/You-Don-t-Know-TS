@@ -1,7 +1,7 @@
 ---
-name: 1.3.Awaited.md
-about: 1-3-实现Awaited.md
-title: 1-3-实现Awaited.md
+name: 1.6.First-of-arrray.md
+about: 1-6-实现First-of-arrray.md
+title: 1-6-实现First-of-arrray.md
 labels: answer
 assignees: paiDaXing-web
             

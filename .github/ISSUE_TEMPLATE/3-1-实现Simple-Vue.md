@@ -1,7 +1,7 @@
 ---
-name: 1.3.Awaited.md
-about: 1-3-实现Awaited.md
-title: 1-3-实现Awaited.md
+name: 3.1.Simple-Vue.md
+about: 3-1-实现Simple-Vue.md
+title: 3-1-实现Simple-Vue.md
 labels: answer
 assignees: paiDaXing-web
             

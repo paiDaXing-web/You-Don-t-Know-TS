@@ -7,53 +7,49 @@ fs.readdir(
     if (err) {
       return console.log("目录不存在");
     }
-    console.log(files);
     files.forEach((item) => {
       const Arr = item.replaceAll(".", "-");
-
+      const newTitle = insertStr(
+        Rep(Arr, Arr.length - 3, "."),
+        getNum(Arr) - 1,
+        "实现"
+      );
       fs.readFile(
-        path.join(
-          __dirname,
-          "./.github/ISSUE_TEMPLATE/" +
-            insertStr(Rep(Arr, Arr.length - 3, "."), getNum(Arr) - 1, "实现")
-        ),
+        path.join(__dirname, "./.github/ISSUE_TEMPLATE/" + newTitle),
         function (err, fileitem) {
           if (err) {
-            const console=`---
-            name: 1.4.实现Readonly
-            about: 实现Readonly
-            title: 1.4.实现Readonly
-            labels: answer
-            assignees: paiDaXing-web
+            const content =
+              `---
+name: ${item}
+about: ${newTitle}
+title: ${newTitle}
+labels: answer
+assignees: paiDaXing-web
             
-            ---
+---
             
-            <!--
-            小贴士：
+<!--
+小贴士：
             
-            🎉 恭喜你成功解决了挑战，很高兴看到你愿意分享你的答案！
+🎉 恭喜你成功解决了挑战，很高兴看到你愿意分享你的答案！
             
-            由于用户数量的增加，Issue 池可能会很快被答案填满。为了保证 Issue 讨论的效率，在提交 Issue 前，请利用搜索查看是否有其他人分享过类似的档案。
+由于用户数量的增加，Issue 池可能会很快被答案填满。为了保证 Issue 讨论的效率，在提交 Issue 前，请利用搜索查看是否有其他人分享过类似的档案。
             
-            你可以为其点赞，或者在 Issue 下追加你的想法和评论。如果您认为自己有不同的解法，欢迎新开 Issue 进行讨论并分享你的解题思路！
+你可以为其点赞，或者在 Issue 下追加你的想法和评论。如果您认为自己有不同的解法，欢迎新开 Issue 进行讨论并分享你的解题思路！
             
-            谢谢！
-            -->
+谢谢！
+-->
             
-           \ ```ts
-            // 你的答案
-            ```
-            `
+` +
+              "```ts" +
+              `
+//你的答案
+
+` +
+              "```";
+            console.log(content);
             fs.writeFile(
-              path.join(
-                __dirname,
-                "./.github/ISSUE_TEMPLATE/" +
-                  insertStr(
-                    Rep(Arr, Arr.length - 3, "."),
-                    getNum(Arr) - 1,
-                    "实现"
-                  )
-              ),
+              path.join(__dirname, "./.github/ISSUE_TEMPLATE/" + newTitle),
               content,
               "utf8",
               function (error) {
@@ -64,34 +60,8 @@ fs.readdir(
                 console.log("写入成功");
               }
             );
-            // fs.mkdir(
-            //   path.join(__dirname, "./example/" + item?.slice(0, -3)),
-            //   function (error) {
-            //     if (error) {
-            //       throw new Error(error);
-            //     }
-            //     fs.readFile(
-            //       path.join(__dirname, "./docs/docs/Bridge/" + item),
-            //       (error, z) => {
-            //         if (error) {
-            //           console.log("data", data);
-            //           throw new Error(error);
-            //         } else {
-            //           let content = data
-            //             .toString()
-            //             .match(/```([\s\S]*?)```/g)[0];
-            //           content = content
-            //             .match(/bridge([\s\S]*?)```/g)[0]
-            //             .slice(0, -3);
-            //           content = formMateCatch(content);
-
-            //         }
-            //       }
-            //     );
-            //   }
-            // );
           }
-          console.log(fileitem?.toString());
+          //   console.log(fileitem?.toString());
           // fs.readFile(
           //   path.join(__dirname, "./docs/docs/Bridge/" + item),
           //   (error, data) => {
@@ -188,5 +158,6 @@ function insertStr(str, index, insertStr) {
 function getNum(str) {
   var pattern = new RegExp("[a-z]+");
   var num = str.indexOf(str.match(pattern));
+
   return num;
 }
