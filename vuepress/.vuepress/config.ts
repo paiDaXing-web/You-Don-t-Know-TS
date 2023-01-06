@@ -71,6 +71,7 @@ export default defineUserConfig({
             "1.6.First-of-array",
             "1.7.Length-of-Tuple",
             "1.8.concat",
+            "1.9.exclude",
           ],
         },
         {
