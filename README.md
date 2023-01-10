@@ -1,5 +1,5 @@
 <p align='center'>
-  <img src='./assets/logo.png' width='100%'/>
+  <img src='https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6dd4f78e0f6c4d3d985a716eff719ba2~tplv-k3u1fbpfcp-zoom-crop-mark:3024:3024:3024:1702.awebp?' width='100%'/>
 </p>
 
 <p align='center'>Collection of TypeScript type challenges</p>
