@@ -73,6 +73,8 @@ export default defineUserConfig({
             "1.8.concat",
             "1.9.exclude",
             "1.10.if",
+            "1.11.includes",
+            "1.12.parameters",
           ],
         },
         {
