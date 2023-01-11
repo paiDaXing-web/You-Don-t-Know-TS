@@ -46,16 +46,16 @@ customModule:
       }
   feature:
     - {
-        title: 易学易懂,
-        desc: 对Typescript知识点整理，由整体框架学习到每个模块精细化学习，逐渐击破,
+        title: 🎉易学易懂,
+        desc: 🔥🔥🔥对Typescript知识点整理，由整体框架学习到每个模块精细化学习，逐渐击破,
       }
     - {
-        title: 动画演示,
-        desc: 对Typescript一些泛型、实用操作、映射等复杂且常用知识点动画演示知识点，逐个击破,
+        title: 💎动画演示,
+        desc: 🔥🔥🔥对Typescript一些泛型、实用操作、映射等复杂且常用知识点动画演示知识点，逐个击破,
       }
     - {
-        title: 现学先练,
-        desc: 对Typescript知识点总结，可以通过内置在线编辑器练习题目，由简单到复杂，巩固学习,
+        title: 🚀现学先练,
+        desc: 🔥🔥🔥对Typescript知识点总结，可以通过内置在线编辑器练习题目，由简单到复杂，巩固学习,
       }
 
 isShowTitleInHome: true
