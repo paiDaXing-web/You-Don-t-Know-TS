@@ -75,6 +75,8 @@ export default defineUserConfig({
             "1.10.if",
             "1.11.includes",
             "1.12.parameters",
+            "1.13.push",
+            "1.14.unshift",
           ],
         },
         {
