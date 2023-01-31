@@ -62,29 +62,34 @@ assignees: paiDaXing-web
             );
           }
           //   console.log(fileitem?.toString());
-          fs.readFile(
-            path.join(__dirname, "./.github/ISSUE_TEMPLATE/" + newTitle),
-            (error, data) => {
-              if (error) {
-                throw new Error(error);
-              } else {
-                let content = data.toString();
+          else {
+            fs.readFile(
+              path.join(__dirname, "./.github/ISSUE_TEMPLATE/" + newTitle),
+              (error, data) => {
+                if (error) {
+                  throw new Error(error);
+                } else {
+                  let content = data.toString();
 
-                fs.writeFile(
-                  path.join(__dirname, "./.github/ISSUE_TEMPLATE/" + newTitle),
-                  content,
-                  "utf8",
-                  function (error) {
-                    if (error) {
-                      console.log(error);
-                      return false;
+                  fs.writeFile(
+                    path.join(
+                      __dirname,
+                      "./.github/ISSUE_TEMPLATE/" + newTitle
+                    ),
+                    content,
+                    "utf8",
+                    function (error) {
+                      if (error) {
+                        console.log(error);
+                        return false;
+                      }
+                      console.log("写入成功");
                     }
-                    console.log("写入成功");
-                  }
-                );
+                  );
+                }
               }
-            }
-          );
+            );
+          }
         }
       );
     });

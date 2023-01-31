@@ -81,15 +81,7 @@ export default defineUserConfig({
         },
         {
           text: "第二章:中等",
-          children: [
-            "middle/1.Pick",
-            "middle/Pick",
-            "middle/Pick",
-            "middle/Pick",
-            "middle/Pick",
-            "middle/Pick",
-            "middle/Pick",
-          ],
+          children: ["2.1.Get-Return-Type", "2.2.omit"],
         },
         {
           text: "第三章:困难",
