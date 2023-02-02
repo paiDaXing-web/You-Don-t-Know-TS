@@ -81,7 +81,7 @@ export default defineUserConfig({
         },
         {
           text: "第二章:中等",
-          children: ["2.1.Get-Return-Type", "2.2.omit"],
+          children: ["2.1.Get-Return-Type", "2.2.omit", "2.3.Readonly2"],
         },
         {
           text: "第三章:困难",
