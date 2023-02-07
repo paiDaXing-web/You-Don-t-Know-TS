@@ -124,26 +124,6 @@ assignees: paiDaXing-web
 // }
 // const fsArr = files.filter((item) => item !== ".deploy-dist");
 
-// fsArr.forEach((file) => {
-//   fs.readFile(
-//     path.join(__dirname, "./example/" + file + "/index.js"),
-//     (error, data) => {
-//       if (error) {
-//         throw new Error(error);
-//       } else {
-//         let content = formMateCatch(data);
-//         fs.writeFile(
-//           path.join(__dirname, "./example/" + file + "/index.js"),
-//           content,
-//           (err) => {
-//             if (err) throw err;
-//             console.log("写入成功", file + "/index.js");
-//           }
-//         );
-//       }
-//     }
-//   );
-// });
 function Rep(str, index, subStr) {
   return setCharAt(str, index, subStr);
 }
