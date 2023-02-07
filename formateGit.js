@@ -96,34 +96,6 @@ assignees: paiDaXing-web
   }
 );
 
-// function formMateCatch(data) {
-//   if (/import([\s\S]*?);/g.test(data.toString())) {
-//     string = data
-//       .toString()
-//       .replace(/import([\s\S]*?);/g, `import { bridge } from "${cdn}"; `);
-//   } else {
-//     string = `import { bridge } from "${cdn}";
-
-// ${data.toString()}`;
-//   }
-//   if (!/.catch([\s\S]*?)throw error/g.test(string)) {
-//     string = `${formMateCode(string)}.catch(error=>{
-//         throw error
-//      });`;
-//   }
-//   return string;
-// }
-// function formMateCode(string) {
-//   var str = string.trim();
-//   console.log(str);
-//   if (str[str.length - 1] === ";") {
-//     return str.slice(0, -1);
-//   } else {
-//     return str;
-//   }
-// }
-// const fsArr = files.filter((item) => item !== ".deploy-dist");
-
 function Rep(str, index, subStr) {
   return setCharAt(str, index, subStr);
 }
