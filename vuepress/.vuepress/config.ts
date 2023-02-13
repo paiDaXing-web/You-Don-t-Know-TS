@@ -96,8 +96,7 @@ export default defineUserConfig({
     },
     navbar: [
       { text: "首页", link: "/" },
-      //   { text: "Categories", link: "/categories/reco/1/" },
-      { text: "Tags", link: "/tags/tag1/1/" },
+
       {
         text: "TypeScript",
         children: [
@@ -118,58 +117,7 @@ export default defineUserConfig({
         link: "https://github.com/paiDaXing-web/You-Don-t-Know-TS",
       },
     ],
-    bulletin: {
-      body: [
-        {
-          type: "text",
-          content: `🎉🎉🎉 《You Dont Know TypeScript》本书正式发布,欢迎大家Issues 问题，积极交流，如遇问题可联系作者。`,
-          style: "font-size: 12px;",
-        },
-        {
-          type: "hr",
-        },
-        {
-          type: "title",
-          content: "管理员微信",
-        },
-        {
-          type: "text",
-          content: `
-          <ul>
-            <li>小助手1：MXM13641044045</li>
-          </ul>`,
-          style: "font-size: 12px;",
-        },
-        {
-          type: "hr",
-        },
-        {
-          type: "title",
-          content: "GitHub",
-        },
-        {
-          type: "text",
-          content: `
-          <ul>
-            <li><a href="https://github.com/paiDaXing-web">Github<a/></li>
-            <li><a href="https://github.com/paiDaXing-web/You-Don-t-Know-TS/issues">Issues<a/></li>
-          </ul>`,
-          style: "font-size: 12px;",
-        },
-        {
-          type: "hr",
-        },
-        {
-          type: "buttongroup",
-          children: [
-            {
-              text: "打赏",
-              link: "/you-dont-know-ts/docs/others/donate.html",
-            },
-          ],
-        },
-      ],
-    },
+
     // valineConfig 配置与 1.x 一致
     // valineConfig: {
     //   appId: 'xxx',
