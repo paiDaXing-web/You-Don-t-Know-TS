@@ -61,6 +61,38 @@
           />
         </a>
       </div>
+      <div align="center" class="js-title">
+        《𝐘𝐨𝐮-𝐝𝐨𝐧𝐭-𝐤𝐧𝐨𝐰𝐧-𝐉𝐬》（系列丛书）
+        <p>
+          这是一套深入探讨 JavaScript
+          语言核心机制的系列丛书。本系列的第一版已经完成。
+        </p>
+      </div>
+      <div align="center" class="you-dont-js-cover">
+        <a href="/you-dont-know-ts/docs/you-dont-js/up-going/"
+          ><img src="./cover1.jpg" width="75" /></a
+        >&nbsp;
+        <a
+          href="/you-dont-know-ts/docs/you-dont-js/up-going/scope-closures-README.html/"
+          ><img src="./cover2.jpg" width="75" /></a
+        >&nbsp;
+        <a
+          href="/you-dont-know-ts/docs/you-dont-js/up-going/this-object-prototypes-README.html/"
+          ><img src="./cover3.jpg" width="75" /></a
+        >&nbsp;
+        <a
+          href="/you-dont-know-ts/docs/you-dont-js/up-going/types-grammar-README.html/"
+          ><img src="./cover4.jpg" width="75" /></a
+        >&nbsp;
+        <a
+          href="/you-dont-know-ts/docs/you-dont-js/up-going/async-performance-README.html/"
+          ><img src="./cover5.jpg" width="75" /></a
+        >&nbsp;
+        <a
+          href="/you-dont-know-ts/docs/you-dont-js/up-going/es6-beyond-README.html/"
+          ><img src="./cover6.jpg" width="75"
+        /></a>
+      </div>
     </div>
     <div class="special-sponsor">Greenet-TC 团队共建</div>
     <div class="content-box-item">
@@ -89,7 +121,6 @@ import {
   onBeforeUnmount,
 } from "vue";
 const frontmatter: any = usePageFrontmatter();
-console.log(frontmatter.value?.customModule);
 const heroImage = computed(() => {
   return frontmatter.value?.customModule?.heroImage
     ? withBase(frontmatter.value?.customModule?.heroImage)
@@ -122,20 +153,21 @@ const bgImageStyle = computed(() => {
 <style lang="less">
 .box {
   width: 100%;
-  height: 100vh;
+  height: auto;
   box-sizing: border-box;
   border-radius: 4px;
 }
 .content-box {
   width: 100%;
-  height: 66vh;
+  height: 90vh;
   &-top {
-    padding-top: 140px;
+    padding-top: 200px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
     margin: 0 auto;
+    padding-top: 20vh;
     &-left {
       width: auto;
       height: 200px;
@@ -149,7 +181,7 @@ const bgImageStyle = computed(() => {
         font-weight: 900;
         letter-spacing: -1px;
         margin: 0 auto;
-        background: -webkit-linear-gradient(315deg, #42d392 25%, #647eff);
+        background: -webkit-linear-gradient(315deg, #31ebff 25%, #3766fd);
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -172,7 +204,7 @@ const bgImageStyle = computed(() => {
     }
   }
   &-bottom {
-    padding-top: 100px;
+    padding-top: 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -188,27 +220,27 @@ const bgImageStyle = computed(() => {
       .Xicons-item-0 {
         font-size: 16px;
         display: inline-block;
-        border-radius: 16px;
+        border-radius: 20px;
         transition: background-color 0.5s, color 0.5s;
         position: relative;
         font-weight: 600;
         border: 1px solid transparent;
         border-color: #d1d1d1;
         margin-right: 18px;
-        padding: 8px 1em;
-        background-color: #858de6;
+        padding: 4px 1em;
+        background-color: #4e91f5;
       }
       .Xicons-item-1 {
         font-size: 16px;
         display: inline-block;
-        border-radius: 16px;
+        border-radius: 20px;
         transition: background-color 0.5s, color 0.5s;
         position: relative;
         font-weight: 600;
         border: 1px solid transparent;
         border-color: #d1d1d1;
         margin-right: 18px;
-        padding: 8px 1em;
+        padding: 4px 1em;
       }
       //   .Xicons-item:last-child {
       //   }
@@ -225,6 +257,21 @@ const bgImageStyle = computed(() => {
     }
   }
 }
+.js-title {
+  font-size: 24px;
+  > p {
+    font-size: 14px;
+  }
+}
+.you-dont-js-cover {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  a {
+    margin-right: 10px;
+  }
+}
 .special-sponsor {
   width: 100%;
   height: 50px;
@@ -234,6 +281,14 @@ const bgImageStyle = computed(() => {
   text-align: center;
   font-weight: 500;
   font-size: 11px;
+}
+.dark .content-box-item {
+  &-group {
+    &-items {
+      background-color: #2f2f2f;
+      box-shadow: none;
+    }
+  }
 }
 .content-box-item {
   padding-top: 40px;
@@ -255,7 +310,12 @@ const bgImageStyle = computed(() => {
       flex: 0 32%;
       font-size: 14px;
       font-weight: 500;
+      box-shadow: inset -1px -1px 14px 0px #00000014;
+      transition: box-shadow 0.45s cubic-bezier(0.645, 0.045, 0.355, 1),
+        transform 0.45s cubic-bezier(0.645, 0.045, 0.355, 1);
       background-color: transparent;
+      margin: 6px;
+
       &-title {
         font-weight: 600;
         font-size: 20px;

@@ -4,7 +4,7 @@ import type { DefaultThemeOptions } from "vuepress";
 import recoTheme from "vuepress-theme-reco";
 
 export default defineUserConfig({
-  title: "You-Dont-Know-TS",
+  title: "TS/JS从书系列",
   description: "Just playing around",
   theme: recoTheme({
     style: "@vuepress-reco/style-default",
@@ -93,19 +93,127 @@ export default defineUserConfig({
           ],
         },
       ],
+      "/docs/you-dont-js/up-going/": [
+        {
+          text: "入门与进阶",
+          children: ["README", "foreword", "ch1", "ch2", "ch3", "apA"],
+        },
+        {
+          text: "作用域与闭包",
+          children: [
+            "scope-closures-README",
+            "scope-closures-ch1",
+            "scope-closures-ch2",
+            "scope-closures-ch3",
+            "scope-closures-ch4",
+            "scope-closures-ch5",
+            "scope-closures-apA",
+            "scope-closures-apB",
+            "scope-closures-apC",
+            "scope-closures-apD",
+          ],
+        },
+        {
+          text: "this与对象原型",
+          children: [
+            "this-object-prototypes-README",
+            "this-object-prototypes-foreword",
+            "this-object-prototypes-ch1",
+            "this-object-prototypes-ch2",
+            "this-object-prototypes-ch3",
+            "this-object-prototypes-ch4",
+            "this-object-prototypes-ch5",
+            "this-object-prototypes-ch6",
+            "this-object-prototypes-apA",
+            "this-object-prototypes-apB",
+          ],
+        },
+        {
+          text: "类型与语法",
+          children: [
+            "types-grammar-README",
+            "types-grammar-foreword",
+            "types-grammar-ch1",
+            "types-grammar-ch2",
+            "types-grammar-ch3",
+            "types-grammar-ch4",
+            "types-grammar-ch5",
+            "types-grammar-apA",
+            "types-grammar-apB",
+          ],
+        },
+        {
+          text: "异步与性能",
+          children: [
+            "async-performance-README",
+            "async-performance-foreword",
+            "async-performance-ch1",
+            "async-performance-ch2",
+            "async-performance-ch3",
+            "async-performance-ch4",
+            "async-performance-ch5",
+            "async-performance-ch6",
+            "async-performance-apA",
+            "async-performance-apB",
+            "async-performance-apC",
+          ],
+        },
+        {
+          text: "ES6与未来",
+          children: [
+            "es6-beyond-README",
+            "es6-beyond-foreword",
+            "es6-beyond-ch1",
+            "es6-beyond-ch2",
+            "es6-beyond-ch3",
+            "es6-beyond-ch4",
+            "es6-beyond-ch5",
+            "es6-beyond-ch6",
+            "es6-beyond-ch7",
+            "es6-beyond-ch8",
+            "es6-beyond-apA",
+          ],
+        },
+      ],
     },
     navbar: [
       { text: "首页", link: "/" },
 
       {
-        text: "TypeScript",
+        text: "《TypeScript》",
         children: [
           { text: "第一卷", link: "/docs/theme-reco/base-1" },
           { text: "第二卷", link: "/docs/theme-reco/Advanced-1" },
         ],
       },
       {
-        text: "挑战",
+        text: "《javaScript》",
+        children: [
+          { text: "入门与进阶", link: "/docs/you-dont-js/up-going/ch1" },
+          {
+            text: "作用域与闭包",
+            link: "/docs/you-dont-js/up-going/scope-closures-README",
+          },
+          {
+            text: "this与对象原型",
+            link: "/docs/you-dont-js/up-going/this-object-prototypes-README",
+          },
+          {
+            text: "类型与语法",
+            link: "/docs/you-dont-js/up-going/types-grammar-README",
+          },
+          {
+            text: "异步与性能",
+            link: "/docs/you-dont-js/up-going/async-performance-README",
+          },
+          {
+            text: "ES6与未来",
+            link: "/docs/you-dont-js/up-going/es6-beyond-README",
+          },
+        ],
+      },
+      {
+        text: "TS挑战",
         children: [
           { text: "简单", link: "/docs/challenge/1.1.hello-world.html" },
           { text: "中等", link: "/blogs/other/guide" },
