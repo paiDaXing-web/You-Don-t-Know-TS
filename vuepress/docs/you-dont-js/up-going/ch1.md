@@ -113,7 +113,7 @@ console.log(b);
 
 在 Chrome 的控制台中键入前面的代码应该会产生如下的东西：
 
-<img src="fig1.png" width="500">
+<img src="./fig1.png" width="500">
 
 继续，试试吧。学习编程的最佳方式就是开始编码！
 
@@ -155,11 +155,11 @@ console.log(age);
 
 它应当和下面的东西很相似：
 
-<img src="fig2.png" width="500">
+<img src="./fig2.png" width="500">
 
 一旦你点击“OK”提交输入的文本，你将会看到你输入的值被存储在变量`age`中，然后我们使用`console.log(..)`把它 _输出_：
 
-<img src="fig3.png" width="500">
+<img src="./fig3.png" width="500">
 
 为了让我们在学习基本编程概念时使事情保持简单，本书中的例子不要求输入。但是现在你已经看到了如何使用`prompt(..)`，如果你想挑战一下自己，你可以试着在探索这些例子时使用输入。
 
