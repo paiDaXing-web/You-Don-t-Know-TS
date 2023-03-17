@@ -1,27 +1,42 @@
-
-
 .dark :root {
     --search-bg-color: #cd1a1a;
     --search-accent-color: #3eaf7c;
     --search-text-color: #2c3e50;
-    --search-border-color: #eaecef;
+    --search-border-color: #d0d5d8;
     --search-item-text-color: #5d81a5;
     --search-item-focus-bg-color: #f3f4f5;
-    --search-input-width: 8rem;
-    --search-result-width: 20rem;
+    --search-input-width: 13rem;
+    --search-result-width: 13rem;
     --vp-c-divider-dark-1: rgba(84, 84, 84, .48);
-
+  
 }
+
 body {
     font-size: 14px;
     font-family: "Inter var experimental", "Inter var", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-weight: 400;
+   
 }
-
+.dark body{
+    background-color: #242424
+}
 .root {
     --max-width-page: 850px;
     --vp-c-divider-dark-1: rgba(60, 60, 60, .12);
-    --bp-c-diver-color: var(--vp-c-divider-dark-1)
+    --bp-c-diver-color: var( --vp-c-divider-dark-1 );
+    --vp-body-bg: #ffff;
+    --search-border-color:var(--search-border-color);
+    --new-search-input-width: 13rem;
+    --search-result-width: 13rem;
+}
+ .dark .search-box input{
+    border: 1px solid #d0d5d817 !important;
+
+}
+ .search-box input{
+   
+    width:  var( --new-search-input-width ) !important;
+
 }
 
 .dark .navbar-container {
@@ -30,9 +45,10 @@ body {
 
 .dark .navbar-container .site-brand {
     background: url("../public/logo-dark.png");
-    background-size: cover;
+    background-size: 100%;
+    background-repeat: no-repeat;
     width: 11rem;
-    height: 2rem;
+    height: 3rem;
     margin-left: calc(50% - 425px - 16rem);
 }
 
@@ -42,15 +58,16 @@ body {
 
 .navbar-container .site-brand {
     background: url("../public/logo-light.png");
-    background-size: cover;
+    background-size: 100%;
+    background-repeat: no-repeat;
     width: 11rem;
-    height: 2rem;
+    height: 3rem;
     margin-left: calc(50% - 425px - 16rem);
    
 }
 .navbar-container .site-brand a{
-    width: 14rem;
-    height: 2rem;
+    width: 11rem;
+    height: 3rem;
     display: inline-block;
 }
 .navbar-container .site-brand .logo {
@@ -105,7 +122,46 @@ body {
         top: 10rem;
         bottom: auto;
     }
-
+    .navbar-links .navbar-links-item .dropdown-wrapper .nav-dropdown{
+        min-width: 170px;
+        top:0.7rem;
+        box-shadow:0 12px 32px rgba(0, 0, 0, .1), 0 2px 6px rgba(0, 0, 0, .08);;
+        transition: background-color .5s;
+        border: 1px solid transparent;
+    }
+    .navbar-links .navbar-links-item .dropdown-wrapper .nav-dropdown li{
+       padding: 0 5px;
+       border-radius: 5px;
+       height: 32px;
+       
+    }
+    .navbar-links .navbar-links-item .dropdown-wrapper .nav-dropdown li:hover{
+        padding: 0 5px;
+        border-radius: 5px;
+        height: 32px;
+background-color: #f1f1f1;        
+transition: all 0.1s ease-in;
+     }
+     .dark .navbar-links .navbar-links-item .dropdown-wrapper .nav-dropdown li:hover{
+        padding: 0 5px;
+        border-radius: 5px;
+        height: 32px;
+background-color: #2f2f2f;        
+transition: all 0.1s ease-in;
+     }
+    .navbar-links .navbar-links-item .dropdown-wrapper .nav-dropdown li a{
+        font-weight:600 ;
+        color:black;
+        font-family: revert;
+    }
+    .dark .navbar-links .navbar-links-item .dropdown-wrapper .nav-dropdown li a{
+        color:#fff;
+    }
+    .navbar-links .navbar-links-item .dropdown-wrapper .nav-dropdown li a:hover{
+        font-weight:600 ;
+        color:#3766fd;
+        transition: all 0.1s ease-in;
+    }
     .dark .page-catalog-container {
         right: calc(50% - 425px - 17rem);
         border-left: 1px solid rgba(84, 84, 84, .48);
@@ -120,4 +176,99 @@ body {
         padding: 1px;
         margin: 2px;
     }
+    .page-container .show-series .show-catalog::-webkit-scrollbar-thumb {
+        border-radius: 15px;
+        background-color: #949494e0;
+        padding: 1px;
+        margin: 2px;
+    }
+    
+}
+.series-container .series-group .series-heading.active{
+    color:#213547;transition: color .5s;
+}
+.series-container a.series-item:hover {
+   color:#213547;
+    transition: color .5s;
+}
+
+.series-container a.series-item::before {
+    background-color:#213547;
+    transition: color .5s;
+}
+.series-container a.series-item {
+    line-height: 1.6rem;
+}
+
+
+
+.dark .series-container .series-group .series-heading.active{
+    color:#ffff;transition: color .5s;
+}
+.dark .series-container a.series-item:hover {
+   color:#fff;
+    transition: color .5s;
+}
+
+.dark .series-container a.series-item::before {
+    background-color:#fff;
+    transition: color .5s;
+}
+.series-container a.series-item {
+    line-height: 1.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Inter var experimental", "Inter var", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+.dark div[class*="language-"] {
+    --tw-bg-opacity: 1;
+    background: #1a1a1a;
+}
+.dark div[class*="language-"].line-numbers-mode .line-numbers {
+    --tw-bg-opacity: 1;
+    background: #1a1a1a;
+}
+
+div[class*="language-"] {
+    --tw-bg-opacity: 1;
+    background: #292d3e
+}
+div[class*="language-"].line-numbers-mode .line-numbers {
+    --tw-bg-opacity: 1;
+    background: #292d3e
+}
+.dark .code-group{
+    background: #1a1a1a;
+   
+    
+}
+.code-group{
+    background:#292d3e; 
+    
+}
+.code-group .code-group__nav .code-group__ul .code-group__li button .icon-container {
+    color: rgb(173 186 199 );
+}
+div[class*="language-"] pre code {
+   
+    color: #fff;
+}
+.custom-container.warning {
+    border-radius: 0.25rem;
+    border-width: 2px;
+    border-color:1px solid transparent;
+    border-style: solid;
+    --tw-border-opacity: 1;
+    border-color: rgba(66, 184, 131, .25);
+    background-color: rgba(66, 184, 131, .05);
+    color:#3eaf7c
+}
+
+.custom-container.warning .custom-container-title, .custom-container.warning svg {
+    color:#3eaf7c
+}
+
+.page-info>.icon-container.left:nth-child(3) .icon-text  {
+    color:red !important
 }
