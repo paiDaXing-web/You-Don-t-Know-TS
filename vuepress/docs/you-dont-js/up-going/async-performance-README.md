@@ -8,16 +8,14 @@
 
 ---
 
-[目录](toc.md)
 
-- [序](foreword.md)（[Jake Archibald](http://jakearchibald.com)）
-- [前言](../preface.md)
-- [第一章: 异步:现在与稍后](ch1.md)
-- [第二章: 回调](ch2.md)
-- [第三章: Promise](ch3.md)
-- [第四章: Generator](ch4.md)
-- [第五章: 程序性能](ch5.md)
-- [第六章: 基准分析与调优](ch6.md)
-- [附录 A：库：asynquence](apA.md)
-- [附录 B：高级异步模式](apB.md)
-- [附录 C：鸣谢](apC.md)
+- [序](async-performance-foreword.md)（[Jake Archibald](http://jakearchibald.com)）
+- [第一章: 异步:现在与稍后](async-performance-ch1.md)
+- [第二章: 回调](async-performance-ch2.md)
+- [第三章: Promise](async-performance-ch3.md)
+- [第四章: Generator](async-performance-ch4.md)
+- [第五章: 程序性能](async-performance-ch5.md)
+- [第六章: 基准分析与调优](async-performance-ch6.md)
+- [附录 A：库：asynquence](async-performance-apA.md)
+- [附录 B：高级异步模式](async-performance-apB.md)
+- [附录 C：鸣谢](async-performance-apC.md)
