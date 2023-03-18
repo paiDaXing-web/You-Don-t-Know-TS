@@ -69,7 +69,7 @@
         </p>
       </div>
       <div align="center" class="you-dont-js-cover">
-        <a href="/you-dont-know-ts/docs/you-dont-js/up-going/"
+        <a href="/you-dont-know-ts/docs/you-dont-js/up-going/ch0.html"
           ><img src="./cover1.jpg" width="75" /></a
         >&nbsp;
         <a

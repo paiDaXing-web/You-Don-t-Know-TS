@@ -96,7 +96,7 @@ export default defineUserConfig({
       "/docs/you-dont-js/up-going/": [
         {
           text: "入门与进阶",
-          children: ["README", "foreword", "ch1", "ch2", "ch3", "apA"],
+          children: ["ch0", "foreword", "ch1", "ch2", "ch3", "apA"],
         },
         {
           text: "作用域与闭包",
@@ -189,7 +189,7 @@ export default defineUserConfig({
       {
         text: "《javaScript》",
         children: [
-          { text: "入门与进阶", link: "/docs/you-dont-js/up-going/ch1" },
+          { text: "入门与进阶", link: "/docs/you-dont-js/up-going/ch0" },
           {
             text: "作用域与闭包",
             link: "/docs/you-dont-js/up-going/scope-closures-README",
