@@ -2006,7 +2006,7 @@ controller.makeRequest(..);
 
 对于如何/为何选用一个箭头函数，如果你喜欢一个可视化的决策图的话：
 
-<img src="./es6-beyond-ch2-fig1.png">
+<img src="./es6-beyond-fig1.png">
 
 ## `for..of`循环
 

@@ -211,7 +211,7 @@ class SpeedBoat inherits Vehicle {
 
 记得刚才这幅图：
 
-<img src="fig1.png">
+<img src="./this-object-prototypes-fig1.png">
 
 注意对于实例化(`a1`、`a2`、`b1`、和 `b2`) _和_ 继承(`Bar`)，箭头如何表示拷贝操作。
 
