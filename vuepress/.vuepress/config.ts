@@ -278,7 +278,7 @@ export default defineUserConfig({
             "objects-classes-foreword",
             "objects-classes-ch1",
             "objects-classes-ch2",
-            "objects-classes--ch3",
+            "objects-classes-ch3",
             "objects-classes-ch4",
             "objects-classes-ch5",
           ],

@@ -73,23 +73,23 @@
           ><img src="./cover1.jpg" width="75" /></a
         >&nbsp;
         <a
-          href="/you-dont-know-ts/docs/you-dont-js/up-going/scope-closures-README.html/"
+          href="/you-dont-know-ts/docs/you-dont-js/up-going/scope-closures-README.html"
           ><img src="./cover2.jpg" width="75" /></a
         >&nbsp;
         <a
-          href="/you-dont-know-ts/docs/you-dont-js/up-going/this-object-prototypes-README.html/"
+          href="/you-dont-know-ts/docs/you-dont-js/up-going/this-object-prototypes-README.html"
           ><img src="./cover3.jpg" width="75" /></a
         >&nbsp;
         <a
-          href="/you-dont-know-ts/docs/you-dont-js/up-going/types-grammar-README.html/"
+          href="/you-dont-know-ts/docs/you-dont-js/up-going/types-grammar-README.html"
           ><img src="./cover4.jpg" width="75" /></a
         >&nbsp;
         <a
-          href="/you-dont-know-ts/docs/you-dont-js/up-going/async-performance-README.html/"
+          href="/you-dont-know-ts/docs/you-dont-js/up-going/async-performance-README.html"
           ><img src="./cover5.jpg" width="75" /></a
         >&nbsp;
         <a
-          href="/you-dont-know-ts/docs/you-dont-js/up-going/es6-beyond-README.html/"
+          href="/you-dont-know-ts/docs/you-dont-js/up-going/es6-beyond-README.html"
           ><img src="./cover6.jpg" width="75"
         /></a>
       </div>
