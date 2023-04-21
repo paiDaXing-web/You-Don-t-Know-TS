@@ -274,4 +274,11 @@ div[class*="language-"] pre code {
 }
 .theme-container .theme-reco-default-content p{
     font-family: fantasy;
+}.series-container a.series-item {
+    line-height: 1.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* font-family: "Inter var experimental", "Inter var", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
+    font-family: cursive;
 }
