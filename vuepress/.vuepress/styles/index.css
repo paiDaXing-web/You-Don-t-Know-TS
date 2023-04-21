@@ -272,3 +272,6 @@ div[class*="language-"] pre code {
 .page-info>.icon-container.left:nth-child(3) .icon-text  {
     color:red !important
 }
+.theme-container .theme-reco-default-content p{
+    font-family: fantasy;
+}
