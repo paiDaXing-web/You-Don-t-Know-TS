@@ -58,6 +58,16 @@ export default defineUserConfig({
             "Advanced-5",
           ],
         },
+        {
+          text: "提高篇:扩展阅读",
+          children: [
+            "article-1",
+            "article-2",
+            "article-3",
+            "article-4",
+            "article-5",
+          ],
+        },
       ],
       "/docs/challenge/": [
         {
@@ -318,8 +328,9 @@ export default defineUserConfig({
       {
         text: "《TypeScript》",
         children: [
-          { text: "第一卷", link: "/docs/theme-reco/base-1.html" },
-          { text: "第二卷", link: "/docs/theme-reco/Advanced-1.html" },
+          { text: "第一卷：基础", link: "/docs/theme-reco/base-1.html" },
+          { text: "第二卷：进阶", link: "/docs/theme-reco/Advanced-1.html" },
+          { text: "第三卷：提高", link: "/docs/theme-reco/article-1.html" },
         ],
       },
       {
