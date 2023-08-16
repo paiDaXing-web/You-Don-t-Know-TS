@@ -172,8 +172,8 @@ Argument of type '"date"' is not assignable to parameter of type '"id" | "text" 
 在使用对象的数值属性时，我们也可以使用 keyof 关键字。请记住，如果我们定义一个带有数值属性的对象，那么我们既需要定义该属性，又需要使用数组语法访问该属性， 如下所示：
 
 ```typescript
-lass ClassWithNumericProperty {
-[1]: string = "Semlinker";
+class ClassWithNumericProperty {
+  [1]: string = "Semlinker";
 }
 
 let classWithNumeric = new ClassWithNumericProperty();
@@ -365,7 +365,7 @@ const locales = [
 ] as const;
 
 // type Locale = "zh-CN" | "en"
-type Locale = typeof locales[number]["locale"];
+type Locale = (typeof locales)[number]["locale"];
 ```
 
 另外在使用 const 断言的时候，我们还需要注意以下两个注意事项：
