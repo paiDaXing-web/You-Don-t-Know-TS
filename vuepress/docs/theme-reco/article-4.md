@@ -2,7 +2,7 @@
  * @Author: maxueming maxueming@kuaishou.com
  * @Date: 2023-08-16 18:16:10
  * @LastEditors: maxueming maxueming@kuaishou.com
- * @LastEditTime: 2023-09-19 14:51:27
+ * @LastEditTime: 2023-09-19 15:38:10
  * @FilePath: /You-Don-t-Know-TS/vuepress/docs/theme-reco/article-4-en.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -81,11 +81,13 @@ interface SetPoint {
 类型别名由 & 扩展，而接口由 extends 扩展。
 
 ![](../assets/article/4-3.gif)
+
 ![](../assets/article/4-4.webp)
 
 那么接口是否可以通过 extends 来扩展类型别名定义的类型呢？答案是肯定的。此外，类型别名还可以通过 & 运算符扩展定义的接口类型：
 
 ![](../assets/article/4-5.gif)
+
 ![](../assets/article/4-6.webp)
 
 现在我们知道了类型别名和接口之间的相似之处，让我们来谈谈它们之间的区别。
@@ -103,6 +105,7 @@ type Point = [number, number]; // tuple type
 - 2. 同名的接口会自动合并（声明合并），而类型别名则不会：
 
 ![](../assets/article/4-7.gif)
+
 ![](../assets/article/4-8.webp)
 
 利用声明合并的特性，我们可以为用户在开发第三方库时提供更好的安全性。例如，webext-bridge 库使用 interface 来定义 ProtocolMap 接口，以便用户可以自由扩展 ProtocolMap 接口。之后，当使用库内部提供的 onMessage 函数监听自定义消息时，我们可以推断出不同消息对应的消息体类型。
@@ -131,6 +134,7 @@ onMessage('foo', ({ data }) => {
 ```
 
 ![](../assets/article/4-9.gif)
+
 ![](../assets/article/4-10.webp)
 
 如果您有兴趣，请查看 webext-bridge 中 onMessage 的类型定义。如果遇到问题可以和我交流。最后总结一下类型别名和接口的一些使用场景。
