@@ -2,7 +2,7 @@
  * @Author: maxueming maxueming@kuaishou.com
  * @Date: 2023-08-16 18:16:10
  * @LastEditors: maxueming maxueming@kuaishou.com
- * @LastEditTime: 2023-09-19 14:44:59
+ * @LastEditTime: 2023-09-19 15:38:28
  * @FilePath: /You-Don-t-Know-TS/vuepress/docs/theme-reco/article-4-en.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -81,11 +81,13 @@ interface SetPoint {
 Type aliases are extended by &, while interfaces are extended by extends.
 
 ![](../assets/article/4-3.gif)
+
 ![](../assets/article/4-4.webp)
 
 So can an interface extend the type defined by the type alias through extends? The answer is yes. Additionally, type aliases can also extend defined interface types via the & operator:
 
 ![](../assets/article/4-5.gif)
+
 ![](../assets/article/4-6.webp)
 
 Now that we know the similarities between type aliases and interfaces, let’s talk about the differences between them.
@@ -103,6 +105,7 @@ type Point = [number, number]; // tuple type
 - 2. Interfaces with the same name are automatically merged(Declaration Merging), while type aliases are not:
 
 ![](../assets/article/4-7.gif)
+
 ![](../assets/article/4-8.webp)
 
 Using the feature of declaration merging, we can provide users with better security when developing third-party libraries. For example, the webext-bridge library uses interface to define the ProtocolMap interface, so that users can freely extend the ProtocolMap interface. After that, when using the onMessage function provided inside the library to monitor custom messages, we can infer the message body types corresponding to different messages.
@@ -131,6 +134,7 @@ onMessage('foo', ({ data }) => {
 ```
 
 ![](../assets/article/4-9.gif)
+
 ![](../assets/article/4-10.webp)
 
 If you’re interested, take a look at the type definition for onMessage in webext-bridge. If you encounter problems, you can communicate with me. Finally, let’s summarize some usage scenarios for type aliases and interfaces.
