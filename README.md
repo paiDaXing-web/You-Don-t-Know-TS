@@ -22,29 +22,43 @@
 
 #### [1.TypeScript 泛型中的 K、T 和 V 是什么？](./vuepress/docs/theme-reco/article-1.md)
 
+以动画的形式，让你弄清楚 TypeScript 泛型中的 K、T、V 等变量！
+
 ![](./vuepress/docs/assets/article/01.gif)
 
 #### [2.轻松理解 TypeScript 通用实用程序类型](./vuepress/docs/theme-reco/article-2.md)
+
+帮助您更好地理解内置实用程序类型的工作原理。
 
 ![](./vuepress/docs/assets/article/25.gif)
 
 #### [3.TypeScript 中的类型到底是什么？](./vuepress/docs/theme-reco/article-3.md)
 
+掌握 TypeScript 中的类型并了解 TypeScript 系统。让您的 TypeScript 技能更进一步。
+
 ![](./vuepress/docs/assets/article/35.gif)
 
 #### [4.不再对 TypeScript 的类型和接口感到困惑](./vuepress/docs/theme-reco/article-4.md)
+
+用动画来解释。掌握 Type 和 Interface 的异同，了解它们的使用场景。
 
 ![](./vuepress/docs/assets/article/4-3.gif)
 
 #### [5.掌握 TypeScript Keyof 类型运算符](./vuepress/docs/theme-reco/article-5.md)
 
+以动画的形式，让你弄清楚 keyof 运算符在 TypeScript 内置实用类型中的作用。
+
 ![](./vuepress/docs/assets/article/5-7.gif)
 
 #### [6.TypeScript Typeof 运算符的 5 个非常有用的技巧](./vuepress/docs/theme-reco/article-6.md)
 
+大多数人在学习 TypeScript 时都会遇到的一个问题，你能想到多少种解决方案？
+
 ![](./vuepress/docs/assets/article/6-4.webp)
 
 #### [7.如何在 TypeScript 中定义具有未知结构的对象类型](./vuepress/docs/theme-reco/article-7.md)
+
+TypeScript 中函数重载的简单解释，帮助您理解重载签名和实现签名。
 
 ![](./vuepress/docs/assets/article/7-6.webp)
 
