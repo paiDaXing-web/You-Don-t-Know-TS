@@ -2,14 +2,14 @@
  * @Author: maxueming maxueming@kuaishou.com
  * @Date: 2023-08-16 17:22:20
  * @LastEditors: maxueming maxueming@kuaishou.com
- * @LastEditTime: 2023-09-20 11:33:47
+ * @LastEditTime: 2023-09-20 11:47:18
  * @FilePath: /You-Don-t-Know-TS/vuepress/docs/theme-reco/article-1.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 
 # 如何在 TypeScript 中定义具有未知结构的对象类型
 
-![1](../assets/article/7-0.jpg)
+![1](../assets/article/7-0.jpeg)
 
 欢迎来到掌握 TypeScript 系列。本系列将以动画的形式介绍 TypeScript 的核心知识和技术。一起来学习吧！往期文章如下：
 
@@ -40,7 +40,7 @@ user.name = "Bytefer";
 
 除了使用任何类型之外，您还知道多少种解决方案？在这篇文章中，我将介绍另外 3 个解决方案。在继续阅读之前，我建议您花点时间考虑一下。
 
-![1](../assets/article/7-2.jpg)
+![1](../assets/article/7-2.jpeg)
 
 解决方案之一是使用类型或接口来定义 User 类型：
 
