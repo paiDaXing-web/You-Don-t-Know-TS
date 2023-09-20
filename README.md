@@ -20,31 +20,31 @@
 
 ### Typescript 常用项目技巧汇总
 
-#### [TypeScript 泛型中的 K、T 和 V 是什么？](./vuepress/docs/theme-reco/article-1.md)
+#### [1.TypeScript 泛型中的 K、T 和 V 是什么？](./vuepress/docs/theme-reco/article-1.md)
 
 ![](./vuepress/docs/assets/article/01.gif)
 
-#### [轻松理解 TypeScript 通用实用程序类型](./vuepress/docs/theme-reco/article-2.md)
+#### [2.轻松理解 TypeScript 通用实用程序类型](./vuepress/docs/theme-reco/article-2.md)
 
 ![](./vuepress/docs/assets/article/25.gif)
 
-#### [TypeScript 中的类型到底是什么？](./vuepress/docs/theme-reco/article-3.md)
+#### [3.TypeScript 中的类型到底是什么？](./vuepress/docs/theme-reco/article-3.md)
 
 ![](./vuepress/docs/assets/article/35.gif)
 
-#### [不再对 TypeScript 的类型和接口感到困惑](./vuepress/docs/theme-reco/article-4.md)
+#### [4.不再对 TypeScript 的类型和接口感到困惑](./vuepress/docs/theme-reco/article-4.md)
 
 ![](./vuepress/docs/assets/article/4-3.gif)
 
-#### [掌握 TypeScript Keyof 类型运算符](./vuepress/docs/theme-reco/article-5.md)
+#### [5.掌握 TypeScript Keyof 类型运算符](./vuepress/docs/theme-reco/article-5.md)
 
 ![](./vuepress/docs/assets/article/5-7.gif)
 
-#### [TypeScript Typeof 运算符的 5 个非常有用的技巧](./vuepress/docs/theme-reco/article-6.md)
+#### [6.TypeScript Typeof 运算符的 5 个非常有用的技巧](./vuepress/docs/theme-reco/article-6.md)
 
 ![](./vuepress/docs/assets/article/6-4.webp)
 
-#### [如何在 TypeScript 中定义具有未知结构的对象类型](./vuepress/docs/theme-reco/article-7.md)
+#### [7.如何在 TypeScript 中定义具有未知结构的对象类型](./vuepress/docs/theme-reco/article-7.md)
 
 ![](./vuepress/docs/assets/article/7-6.webp)
 
