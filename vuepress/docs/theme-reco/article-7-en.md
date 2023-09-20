@@ -2,14 +2,14 @@
  * @Author: maxueming maxueming@kuaishou.com
  * @Date: 2023-08-16 17:22:20
  * @LastEditors: maxueming maxueming@kuaishou.com
- * @LastEditTime: 2023-09-20 11:26:22
+ * @LastEditTime: 2023-09-20 11:47:28
  * @FilePath: /You-Don-t-Know-TS/vuepress/docs/theme-reco/article-1.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 
 # How To Define Objects Type With Unknown Structures in TypeScript
 
-![1](../assets/article/7-0.jpg)
+![1](../assets/article/7-0.jpeg)
 
 Welcome to the Mastering TypeScript series. This series will introduce the core knowledge and techniques of TypeScript in the form of animations. Let’s learn together! Previous articles are as follows:
 
@@ -40,7 +40,7 @@ user.name = "Bytefer";
 
 Besides using any type, how many solutions do you know? In this article, I will introduce 3 other solutions. Before you continue reading, I suggest you take a moment to think about it.
 
-![1](../assets/article/7-2.jpg)
+![1](../assets/article/7-2.jpeg)
 Photo by Aron Visuals on Unsplash
 One of the solutions is to use type or interface to define a User type:
 
