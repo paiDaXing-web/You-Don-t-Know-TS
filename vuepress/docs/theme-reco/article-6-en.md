@@ -2,7 +2,7 @@
  * @Author: maxueming maxueming@kuaishou.com
  * @Date: 2023-08-16 17:22:20
  * @LastEditors: maxueming maxueming@kuaishou.com
- * @LastEditTime: 2023-09-20 11:06:50
+ * @LastEditTime: 2023-09-20 11:14:24
  * @FilePath: /You-Don-t-Know-TS/vuepress/docs/theme-reco/article-1.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -61,15 +61,15 @@ There is another more common scenario in which the typeof operator is used in yo
 ## 4. Get the Type of the Class Object
 
 Since the typeof operator can handle function objects, it can handle Class objects? The answer is yes.
-![1](../assets/article/6-4.webp)
+![1](../assets/article/6-5.webp)
 In the above code, createPoint is a factory function that creates an instance of the Point class. Through the typeof operator, you can obtain the corresponding construct signature of the Point class, so as to realize the corresponding type verification. When defining the parameter type of Constructor, if the typeof operator is not used, the following error message will appear:
 
-![1](../assets/article/6-5.webp)
+![1](../assets/article/6-6.webp)
 
 ## 5. Get a More Precise Type
 
 When using the typeof operator, if you want to get a more precise type, then you can combine it with the const assertion introduced in TypeScript version 3.4. This is used in the following way.
 
-![1](../assets/article/6-6.webp)
+![1](../assets/article/6-7.webp)
 
 As can be seen from the above figure, after using the const assertion, and then using the typeof operator, we can obtain a more precise type.

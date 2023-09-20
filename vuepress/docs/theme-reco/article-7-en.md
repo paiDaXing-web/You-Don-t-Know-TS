@@ -2,62 +2,133 @@
  * @Author: maxueming maxueming@kuaishou.com
  * @Date: 2023-08-16 17:22:20
  * @LastEditors: maxueming maxueming@kuaishou.com
- * @LastEditTime: 2023-08-16 18:20:16
+ * @LastEditTime: 2023-09-20 11:26:22
  * @FilePath: /You-Don-t-Know-TS/vuepress/docs/theme-reco/article-1.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 
-# TypeScript 泛型中的 K、T 和 V 是什么？
+# How To Define Objects Type With Unknown Structures in TypeScript
 
-![1](../assets/article/article-cover.webp)
+![1](../assets/article/7-0.jpg)
 
-欢迎来到掌握 TypeScript 系列。本系列将以动画的形式介绍 TypeScript 的核心知识和技术。一起来学习吧！往期文章如下：
+Welcome to the Mastering TypeScript series. This series will introduce the core knowledge and techniques of TypeScript in the form of animations. Let’s learn together! Previous articles are as follows:
 
-[英文版本](./article-1-en.md)
+[简体中文](./article-7.md)
 
-- [What Are K, T, and V in TypeScript Generics?](article-1.md)
-- [Using TypeScript Mapped Types Like a Pro](article-1.md)
-- [Using TypeScript Conditional Types Like a Pro](article-1.md)
-- [Using TypeScript Intersection Types Like a Pro](article-1.md)
-- [Using TypeScript infer Like a Prov](article-1.md)
-- [Using TypeScript Template Literal Types Like a Prov](article-1.md)
+- [What Are K, T, and V in TypeScript Generics?](article-1-en.md)
+- [Using TypeScript Mapped Types Like a Pro](article-1-en.md)
+- [Using TypeScript Conditional Types Like a Pro](article-1-en.md)
+- [Using TypeScript Intersection Types Like a Pro](article-1-en.md)
+- [Using TypeScript infer Like a Prov](article-1-en.md)
+- [Using TypeScript Template Literal Types Like a Prov](article-1-en.md)
 - [TypeScript Visualized: 15 Most Used Utility Types](./Advanced-2.md)
-- [10 Things You Need To Know About TypeScript Classes](article-1.md)
-- [The Purpose of ‘declare’ Keyword in TypeScript](article-1.md)
-- [How To Define Objects Type With Unknown Structures in TypeScript](article-1.md)
+- [10 Things You Need To Know About TypeScript Classes](article-1-en.md)
+- [The Purpose of ‘declare’ Keyword in TypeScript](article-1-en.md)
+- [How To Define Objects Type With Unknown Structures in TypeScript](article-1-en.md)
 
-当你第一次看到 TypeScript 泛型中的 `T` 时，是不是觉得很奇怪？
+Did you encounter similar errors when you were learning TypeScript?
 
-![](../assets/article/01.gif)
+![1](../assets/article/7-1.webp)
 
-该公式称为泛型类型参数，它是我们希望传递给恒等函数的类型占位符。
+To fix this error, a very violent way is to use any type:
 
-就像传递参数一样，我们获取用户指定的实际类型并将其链接到参数类型和返回值类型。
+```typescript
+let user: any = {};
+user.id = "TS001";
+user.name = "Bytefer";
+```
 
-![](../assets/article/02.gif)
+Besides using any type, how many solutions do you know? In this article, I will introduce 3 other solutions. Before you continue reading, I suggest you take a moment to think about it.
 
-![](../assets/article/03.webp)
+![1](../assets/article/7-2.jpg)
+Photo by Aron Visuals on Unsplash
+One of the solutions is to use type or interface to define a User type:
 
-那么 `T` 是什么意思呢？图中的泛型类型参数 `T` 代表 `Type`，实际上 `T` 可以替换为任何有效的名称。除了 `T` 之外，常见的泛型变量还有 `K`、`V`、`E` 等。
+```typescript
+interface User {
+  id: string;
+  name: string;
+}
+let user = {} as User;
+user.id = "TS001";
+user.name = "Bytefer";
+```
 
-- K(Key)：表示对象中 key 的类型
-- V(Value)：表示对象中值的类型
-- E(Element)：表示元素类型
+Although using the User type, the previous problem can be solved. But if you set a new age property for the user object, the following error message will be displayed:
 
-![](../assets/article/04.gif)
+```typescript
+Property 'age' does not exist on type 'User'.ts(2339)
+```
 
-当然，你不必只定义一个类型参数，你可以引入任意数量的类型参数。这里我们引入一个新的类型参数 U，它扩展了我们定义的恒等函数。
+So how should we solve the problem of dynamic property assignment? At this point, we can use TypeScript’s index signatures. When we only know the type of the object keys and values, we can use index signatures to define the type of that object. The syntax of the index signatures is as follows:
 
-![](../assets/article/05.gif)
+![1](../assets/article/7-3.webp)
 
-![](../assets/article/06.webp)
+The type of the key can only be string, number, symbol, or template literal type, while the type of the value can be any type.
 
-在调用 identity 函数时，我们可以显式指定泛型参数的实际类型。当然，你也可以不指定泛型参数的类型，让 TypeScript 自动帮我们完成类型推断。
+![1](../assets/article/7-4.webp)
 
-![](../assets/article/07.gif)
+The template literal types is a new type introduced in TypeScript 4.1, and in combination with index signatures, we can define more powerful types.
 
-![](../assets/article/08.webp)
+![1](../assets/article/7-5.webp)
 
-看完上面的动画，你是否已经了解泛型类型参数了？
+If you want to learn more about template literal types, I recommend you read this article:
 
-If you like to learn TypeScript in the form of animation, you can follow me on Medium or Twitter to read more about TS and JS!
+[Using TypeScript Template Literal Types Like a Pro](./article-24.md)
+
+Once we understand the syntax of the index signatures, we can easily define a new User type:
+
+```typescript
+interface User {
+  id: string;
+  name: string;
+  [key: string]: string;
+}
+```
+
+Where id and name are already properties, we set the type of other properties of User type to string type by index signatures. When using index signatures, you may encounter these confusions:
+
+![1](../assets/article/7-6.webp)
+
+- Why can the corresponding property value be accessed through the string “1” and the number 1?
+- Why does keyof NumbersNames return a union type of string and number types?
+  `This is because JavaScript implicitly coerces numbers to strings when used as keys in property accessors, and TypeScript performs this conversion as well.`
+
+In addition to using index signatures, we can also use TypeScript’s built-in utility type Record type to define the User type. The role of the Record utility type is as follows:
+
+![1](../assets/article/7-7.webp)
+
+```typescript
+type User = Record<string, string>;
+let user = {} as User;
+user.id = "TS001"; // Ok
+user.name = "Bytefer"; // Ok
+```
+
+So what’s the difference between an index signatures and a Record utility type? In some cases, they all define the expected type.
+
+```typescript
+const user1: Record<string, string> = { name: "Bytefer" }; // Ok
+const user2: { [key: string]: string } = { name: "Bytefer" }; // Ok
+```
+
+For index signatures, the key type can only be string, number, symbol, or template literal type. For the Record utility type, the key type can be a literal type or a union of literal types:
+
+![1](../assets/article/7-8.webp)
+To get a better grasp of the Record utility type, let’s take a look at its internal implementation:
+
+```typescript
+/**
+ * Construct a type with a set of properties K of type T.
+ * typescript/lib/lib.es5.d.ts
+ */
+type Record<K extends keyof any, T> = {
+  [P in K]: T;
+};
+```
+
+The Record utility type uses the TypeScript mapped types internally, which is used in other built-in utility types. If you want to learn more about TypeScript mapped types, I recommend you read the following article carefully:
+
+[Using TypeScript Mapped Types Like a Pro](./article-21.md)
+
+After reading this article, I believe you already understand TypeScript index types and Record Record utility types. If you want to learn TypeScript, then don’t miss the Mastering TypeScript series.

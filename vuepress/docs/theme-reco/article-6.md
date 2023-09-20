@@ -2,7 +2,7 @@
  * @Author: maxueming maxueming@kuaishou.com
  * @Date: 2023-08-16 17:22:20
  * @LastEditors: maxueming maxueming@kuaishou.com
- * @LastEditTime: 2023-09-20 11:12:37
+ * @LastEditTime: 2023-09-20 11:13:54
  * @FilePath: /You-Don-t-Know-TS/vuepress/docs/theme-reco/article-1.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -63,15 +63,15 @@ type Address = Person["address"];
 
 既然 typeof 运算符可以处理函数对象，那么它也可以处理 Class 对象吗？答案是肯定的
 
-![1](../assets/article/6-4.webp)
+![1](../assets/article/6-5.webp)
 
 在上面的代码中，createPoint 是一个工厂函数，用于创建 Point 类的实例。通过 typeof 运算符，可以获得 Point 类对应的构造签名，从而实现对应的类型验证。定义 Constructor 的参数类型时，如果不使用 typeof 运算符，会出现如下错误信息：
 
-![1](../assets/article/6-5.webp)
+![1](../assets/article/6-6.webp)
 
 ## 5. 获得更精确的类型
 
 使用 typeof 运算符时，如果您想获得更精确的类型，则可以将其与 TypeScript 3.4 版本中引入的 const 断言结合起来。这是按以下方式使用的。
-![1](../assets/article/6-6.webp)
+![1](../assets/article/6-7.webp)
 
 As can be seen from the above figure, after using the const assertion, and then using the typeof operator, we can obtain a more precise type.
