@@ -2,62 +2,132 @@
  * @Author: maxueming maxueming@kuaishou.com
  * @Date: 2023-08-16 17:22:20
  * @LastEditors: maxueming maxueming@kuaishou.com
- * @LastEditTime: 2023-08-16 18:20:16
+ * @LastEditTime: 2023-09-21 17:00:44
  * @FilePath: /You-Don-t-Know-TS/vuepress/docs/theme-reco/article-1.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 
-# TypeScript 泛型中的 K、T 和 V 是什么？
+# The Purpose of ‘declare’ Keyword in TypeScript
 
-![1](../assets/article/article-cover.webp)
+A detailed introduction to the role of TypeScript ‘declare’, so you are not a stranger to `*.d.ts` files.
 
-欢迎来到掌握 TypeScript 系列。本系列将以动画的形式介绍 TypeScript 的核心知识和技术。一起来学习吧！往期文章如下：
+![1](../assets/article/9-0.webp)
 
-[英文版本](./article-1-en.md)
+Welcome to the Mastering TypeScript series. This series will introduce the core knowledge and techniques of TypeScript in the form of animations. Let’s learn together! Previous articles are as follows:
 
-- [What Are K, T, and V in TypeScript Generics?](article-1.md)
-- [Using TypeScript Mapped Types Like a Pro](article-1.md)
-- [Using TypeScript Conditional Types Like a Pro](article-1.md)
-- [Using TypeScript Intersection Types Like a Pro](article-1.md)
-- [Using TypeScript infer Like a Prov](article-1.md)
-- [Using TypeScript Template Literal Types Like a Prov](article-1.md)
+[简体中文](./article-7.md)
+
+- [What Are K, T, and V in TypeScript Generics?](article-1-en.md)
+- [Using TypeScript Mapped Types Like a Pro](article-1-en.md)
+- [Using TypeScript Conditional Types Like a Pro](article-1-en.md)
+- [Using TypeScript Intersection Types Like a Pro](article-1-en.md)
+- [Using TypeScript infer Like a Prov](article-1-en.md)
+- [Using TypeScript Template Literal Types Like a Prov](article-1-en.md)
 - [TypeScript Visualized: 15 Most Used Utility Types](./Advanced-2.md)
-- [10 Things You Need To Know About TypeScript Classes](article-1.md)
-- [The Purpose of ‘declare’ Keyword in TypeScript](article-1.md)
-- [How To Define Objects Type With Unknown Structures in TypeScript](article-1.md)
+- [10 Things You Need To Know About TypeScript Classes](article-1-en.md)
+- [The Purpose of ‘declare’ Keyword in TypeScript](article-1-en.md)
+- [How To Define Objects Type With Unknown Structures in TypeScript](article-1-en.md)
 
-当你第一次看到 TypeScript 泛型中的 `T` 时，是不是觉得很奇怪？
+When you open the `*.d.ts` declaration file in your TypeScript project, you may see `declare`. Do you know what `declare` does? If you don’t know, after reading this article, maybe you will.
 
-![](../assets/article/01.gif)
+In TypeScript projects, you may import third-party JS-SDK in the form of script tags, such as importing the JS-SDK of the Google Maps platform.
 
-该公式称为泛型类型参数，它是我们希望传递给恒等函数的类型占位符。
+```typescript
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+  defer
+></script>
+```
 
-就像传递参数一样，我们获取用户指定的实际类型并将其链接到参数类型和返回值类型。
+After initialization, you will call the API exposed by the JS-SDK in a TypeScript file.
 
-![](../assets/article/02.gif)
+![1](../assets/article/9-1.webp)
 
-![](../assets/article/03.webp)
+Although you are using the API provided by JS-SDK according to the Google Maps development documentation, the TypeScript compiler will still prompt the corresponding error message for the above code. This is because the TypeScript compiler does not recognize the global variable google.
 
-那么 `T` 是什么意思呢？图中的泛型类型参数 `T` 代表 `Type`，实际上 `T` 可以替换为任何有效的名称。除了 `T` 之外，常见的泛型变量还有 `K`、`V`、`E` 等。
+So how to solve this problem? The answer is to use the declare keyword to declare the google global variable so that the TypeScript compiler can recognize the global variable.
 
-- K(Key)：表示对象中 key 的类型
-- V(Value)：表示对象中值的类型
-- E(Element)：表示元素类型
+declare var google: any;
 
-![](../assets/article/04.gif)
+![1](../assets/article/9-2.webp)
 
-当然，你不必只定义一个类型参数，你可以引入任意数量的类型参数。这里我们引入一个新的类型参数 U，它扩展了我们定义的恒等函数。
+Seeing this, do you get confused? Why can you use global variables like JSON, Math, or Objectin TypeScript projects normally? This is because TypeScript does the declarations for us internally, and the global variables mentioned earlier are declared in the lib.es5.d.ts declaration file.
 
-![](../assets/article/05.gif)
+```typescript
+// typescript/lib/lib.es5.d.ts
+declare var JSON: JSON;
+declare var Math: Math;
+declare var Object: ObjectConstructor;
+```
 
-![](../assets/article/06.webp)
+In fact, in addition to declaring global variables, the declare keyword can also be used to declare global functions, global classes, or global enum types. Functions such as eval, isNaN, encodeURI, and parseIntthat you may have used at work are also declared in the lib.es5.d.ts declaration file:
 
-在调用 identity 函数时，我们可以显式指定泛型参数的实际类型。当然，你也可以不指定泛型参数的类型，让 TypeScript 自动帮我们完成类型推断。
+```typescript
+declare function eval(x: string): any;
+declare function isNaN(number: number): boolean;
+declare function encodeURI(uri: string): string;
+declare function parseInt(string: string, radix?: number): number;
+```
 
-![](../assets/article/07.gif)
+It should be noted that when declaring a global function, we do not include the specific implementation of the function. With the declaration file, the TypeScript compiler can recognize the above global JavaScript functions.
 
-![](../assets/article/08.webp)
+The solution to the previous problem of not finding the name “google” is relatively violent. A better solution is to use the type declaration file search function provided on the TypeScript website or the DefinitelyTyped project, and you may be able to find a TypeScript type declaration file for a higher-quality third-party library.
 
-看完上面的动画，你是否已经了解泛型类型参数了？
+![1](../assets/article/9-0.webp)
 
-If you like to learn TypeScript in the form of animation, you can follow me on Medium or Twitter to read more about TS and JS!
+The DefinitelyTyped project is an open-source project that maintains type declaration files for many packages.
+
+Once found, you can install the module with the required type declaration file via npm. If you have read the guide on using TypeScript and Google Maps. You can find the type declaration file corresponding to Google Maps. After that, you can use npm to install it:
+
+```typescript
+npm i -D @types/google.maps
+```
+
+For an npm package “foo”, typings for it will be at “@types/foo”. For example, the more familiar jquery library has the package name — @types/jquery.
+
+Next, we’ll cover other uses of ‘declare’. When you open the client.d.ts declaration file in the Vite project, you will see a lot of code that declares the module.
+
+![1](../assets/article/9-0.webp)
+
+In the above code, we have declared the css, jpgand ttfmodules. Why do you need to declare these modules? Because if you don’t declare them, the TypeScript compiler will not recognize these modules and will prompt the corresponding error message.
+
+![1](../assets/article/9-0.webp)
+
+When declaring modules, in order to avoid declaring each resource with its corresponding module, TypeScript 2.0 starts to support the wildcard (\*) form to declare the name of the module.
+
+![1](../assets/article/9-0.webp)
+
+Additionally, TypeScript allows you to extend types defined in existing modules through the declare module syntax. For example, if you wanted to add the $axios property to every Vue component instance, you could do this:
+
+```typescript
+import { AxiosInstance } from "axios";
+declare module "@vue/runtime-core" {
+  interface ComponentCustomProperties {
+    $axios: AxiosInstance;
+  }
+}
+```
+
+Then, using the globalProperties property of the config object, you can efficiently add the $axiosproperty to each component instance:
+
+```typescript
+import { createApp } from "vue";
+import axios from "axios";
+import App from "./App.vue";
+const app = createApp(App);
+app.config.globalProperties.$axios = axios;
+app.mount("#app");
+```
+
+Finally, in the component, you can access the axios object through the proxy.$axios property of the component’s internal instance:
+
+```typescript
+import { getCurrentInstance, ComponentInternalInstance } from "vue";
+const { proxy } = getCurrentInstance() as ComponentInternalInstance;
+proxy!.$axios
+  .get("https://jsonplaceholder.typicode.com/todos/1")
+  .then((response) => response.data)
+  .then((json) => console.log(json));
+```
+
+After reading this article, I believe you already understand the role of declare keyword and some common application scenarios. If you want to learn TypeScript, then don’t miss the Mastering TypeScript series.
