@@ -2,12 +2,12 @@
  * @Author: maxueming maxueming@kuaishou.com
  * @Date: 2023-09-27 15:08:00
  * @LastEditors: maxueming maxueming@kuaishou.com
- * @LastEditTime: 2023-09-27 15:55:18
+ * @LastEditTime: 2023-09-27 16:36:39
  * @FilePath: /You-Don-t-Know-TS/vuepress/docs/theme-reco/article-10-en.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 
-# 10 Things You Need To Know About TypeScript Interface
+# 关于 TypeScript 接口你需要了解的 10 件事
 
 10 usage scenarios of TypeScript interfaces — maybe only 20% of web developers master them all
 
@@ -29,7 +29,7 @@ Welcome to the Mastering TypeScript series. This series will introduce the core 
 - [How To Define Objects Type With Unknown Structures in TypeScript](article-1-en.md)
 - TypeScript 中的接口是一个非常灵活的概念。除了抽象类的部分行为外，它还经常被用来描述“对象的形状”。
 
-### Required Properties
+### 所需属性
 
 定义接口时，需要使用 interface 关键字：
 
